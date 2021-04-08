@@ -70,7 +70,7 @@ datos.on('error', (err) => {
 //SINFFER
 datos.on('message', (msg, rinfo) =>  {
   msg = msg.toString()
-  fs.writeFile('/var/www/taxis/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg, err => {
+  fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg, err => {
     if (err) throw err;
   })
   console.log(msg)

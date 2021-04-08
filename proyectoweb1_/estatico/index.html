@@ -7,25 +7,25 @@
         <meta name="robots" content="index,follow" />
         <title class="container-fluid">TIO TAXIS | Localizar</title>
         <!-- Esto crea el icono en el titulo-->
-        <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/">
-        <link rel="apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="./imagenes/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="./imagenes/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="./imagenes/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="./imagenes/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="./imagenes/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="./imagenes/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="./imagenes/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="./imagenes/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="./imagenes/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="./imagenes/favicon-16x16.png">
-        <link rel="manifest" href="./imagenes/manifest.json">
+        <link rel="apple-touch-icon" sizes="57x57" href="/estatico/imagenes/">
+        <link rel="apple-touch-icon" sizes="60x60" href="/estatico/imagenes/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="/estatico/imagenes/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="/estatico/imagenes/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="/estatico/imagenes/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="/estatico/imagenes/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="/estatico/imagenes/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="/estatico/imagenes/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="/estatico/imagenes/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="/estatico/imagenes/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/estatico/imagenes/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="/estatico/imagenes/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/estatico/imagenes/favicon-16x16.png">
+        <link rel="manifest" href="/estatico/imagenes/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/./imagenes/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="/estatico/imagenes/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="/estatico/style.css">
 
         <!-- se importa boostrap para el diseño -->
         <link
@@ -46,7 +46,7 @@
     <style>
         #map {
             width: cover;
-            height: 400px;
+            height: 50vh;
         }
 
         #tabla {
@@ -73,7 +73,7 @@
                 <div class="col-lg-12 h-100 d-flex">
                     <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
                     <div class="mx-auto d-flex">
-                        <img src="./imagenes/1617579128832.png"
+                        <img src="/estatico/imagenes/1617579128832.png"
                             style="width:70px; height: 70px;" alt="Uffs, tuvimos
                             un problema">
                         <h1 class="display-3 text-center">
@@ -86,7 +86,7 @@
             <!-- diseño barra de navegacion-->
             <ul class="nav mt-3 fondo2">
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-5"href="./index.html">Localizar</a>
+                    <a class="nav-link text-white fs-5"href="#">Localizar</a>
                 </li>
                 <li class="nav-item"> <a class="nav-link text-white fs-5" href="javascript:window.open('http://3.232.187.14:37778/ubicartaxi','','toolbar=yes');void 0">¿Donde estuvo?</a>
                 </li>
@@ -101,7 +101,7 @@
 
             <!-- correción de mapa-->
             <div class="px-5 border fondo container-fluid mt-3">
-                <div id="map"> </div>
+                <div id="map" > </div>
             </div>
 
             <table id="tabla" class="mt-3 table table-sm fondo">
