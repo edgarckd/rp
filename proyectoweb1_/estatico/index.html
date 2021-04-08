@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="description" content="Esta página muestra la geolocalización de tu vehículo" />
+        <meta name="robots" content="index,follow" />
+        <title class="container-fluid">TIO TAXIS | Localizar</title>
+        <!-- Esto crea el icono en el titulo-->
+        <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/">
+        <link rel="apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="./imagenes/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="./imagenes/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./imagenes/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="./imagenes/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="./imagenes/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="./imagenes/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="./imagenes/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="./imagenes/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="./imagenes/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./imagenes/favicon-16x16.png">
+        <link rel="manifest" href="./imagenes/manifest.json">
+        <meta name="msapplication-TileColor" content="#ffffff">
+        <meta name="msapplication-TileImage" content="/./imagenes/ms-icon-144x144.png">
+        <meta name="theme-color" content="#ffffff">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./style.css">
+
+        <!-- se importa boostrap para el diseño -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"  
+            rel="stylesheet"
+            integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+            crossorigin="anonymous">
+
+        <link rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""
+            />
+
+        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin=""></script>
+    </head>
+
+    <style>
+        #map {
+            width: cover;
+            height: 400px;
+        }
+
+        #tabla {
+            width: 100%;
+        }
+
+        td {
+            width: 33%
+        }
+    </style>
+
+    <body class="body">
+        <ul class="nav boder border-dark fondo2">
+            <br>
+        </ul>
+    
+        <!-- Diseño encabezado logo y titulo-->
+        <header class="container-fluid mt-3">
+    
+            <!-- el container hace que encabezado cubra la extension de la pantalla-->
+            <div class="row">
+    
+                <!-- crea una fila con columnas dentro-->
+                <div class="col-lg-12 h-100 d-flex">
+                    <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
+                    <div class="mx-auto d-flex">
+                        <img src="./imagenes/1617579128832.png"
+                            style="width:70px; height: 70px;" alt="Uffs, tuvimos
+                            un problema">
+                        <h1 class="display-3 text-center">
+                            TIO TAXI
+                        </h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- diseño barra de navegacion-->
+            <ul class="nav mt-3 fondo2">
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-5"href="./index.html">Localizar</a>
+                </li>
+                <li class="nav-item"> <a class="nav-link text-white fs-5" href="javascript:window.open('http://3.232.187.14:37778/ubicartaxi','','toolbar=yes');void 0">¿Donde estuvo?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-5"href="./quienes_somos.html" target="_blank">Quienes somos</a>
+                </li>
+            </ul>
+
+        </header>
+
+        <main>
+
+            <!-- correción de mapa-->
+            <div class="px-5 border fondo container-fluid mt-3">
+                <div id="map"> </div>
+            </div>
+
+            <table id="tabla" class="mt-3 table table-sm fondo">
+                <div class="table-responsive">
+                    <div class="table-class table-align-middle">
+                        <thead>
+                            <th>Latitud</th>
+                            <th>Longitud</th>
+                            <th>Tiempo</th>
+                        </thead>
+                        <tr onload="readFile()">
+                            <td id="output1"></td>
+                            <td id="output2"></td>
+                            <td id="output3"></td>
+                        </tr>
+                    </div>
+                </div>
+            </table>
+
+            <script src="https://code.jquery.com/jquery-3.6.0.js"
+                integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="anonymous"></script>
+            <script src="/estatico/jscode.js"></script>
+        
+        </main>
+
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+    
+    </body>
+
+    <ul class="nav boder border-dark fondo2">
+        <br>
+    </ul>
+
+</html>
