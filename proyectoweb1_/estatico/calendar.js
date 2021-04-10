@@ -114,7 +114,7 @@ async function obtenerdatos(){
 		polyline.setLatLngs([latlon])
 		// map.setView(latlon[0])
 
-		if (latlon = []){
+		if (latlon == []){
 			alert("NO DATA1")
 		}
 	}
