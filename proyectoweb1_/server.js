@@ -1,5 +1,6 @@
 const express = require("express")
 var app = express()
+//var server = require('http').createServer(app)
 var data
 var lat
 var lon
@@ -43,7 +44,7 @@ app.get("/ubicartaxi/:id", (req,res) => {
   const inicio = id[0].split("T");
   const final = id[1].split("T");
 
-  client.query(`SELECT "latitud", "longitud", "time" FROM public.geodatos where "time"::date between date \'${inicio[0]}\' and date \'${final[0]}\' and "time"::time between time \'${inicio[1]}\' and time \'${final[1]}\';`,
+  client.query(`SELECT "latitud","longitud","time" FROM public.geodatos WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
   (err, rows, fields) => {
   if (!err) {
   res.json(rows);

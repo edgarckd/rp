@@ -2,52 +2,39 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8" />
-        <meta name="description" content="Esta página muestra la geolocalización
-            de tu vehículo" />
+        <meta name="description" content="Esta página muestra la geolocalización de tu vehículo" />
         <meta name="robots" content="index,follow" />
         <title>TIO TAXIS | Quienes somos </title>
+
         <!-- Esto crea el icono en el titulo-->
         <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/>
-        <link rel="apple-touch-icon" sizes="60x60"
-            href="./imagenes/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72"
-            href="./imagenes/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76"
-            href="./imagenes/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114"
-            href="./imagenes/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120"
-            href="./imagenes/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144"
-            href="./imagenes/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152"
-            href="./imagenes/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180"
-            href="./imagenes/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"
-            href="./imagenes/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32"
-            href="./imagenes/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96"
-            href="./imagenes/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16"
-            href="./imagenes/favicon-16x16.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="./imagenes/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="./imagenes/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="./imagenes/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="./imagenes/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="./imagenes/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="./imagenes/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="./imagenes/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192" href="./imagenes/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="./imagenes/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="./imagenes/favicon-16x16.png">
         <link rel="manifest" href="./imagenes/manifest.json">
         <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage"
-            content="/./imagenes/ms-icon-144x144.png">
+        <meta name="msapplication-TileImage" content="/./imagenes/ms-icon-144x144.png">
         <meta name="theme-color" content="#ffffff">
-
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
         <!--se conecta con CSS-->
         <link rel="stylesheet" href="./style.css">
+
         <!-- se importa boostrap para el diseño -->
-        <link
+        <link 
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
             rel="stylesheet"
             integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
             crossorigin="anonymous">
-
 
         <link rel="stylesheet"
             href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
@@ -57,51 +44,39 @@
         <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
             integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin=""></script>
     </head>
+
     <body class="body">
+
         <ul class="nav boder border-dark fondo2">
             <br>
         </ul>
+
         <header class="container-fluid mt-3">
+
             <!-- el container hace que encabezado cubra la extension de la pantalla-->
             <div class="row">
-                <!-- crea una fila con columnas dentro-->
 
+                <!-- crea una fila con columnas dentro-->
                 <div class="col-lg-12 h-100 d-flex">
+
                     <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
                     <div class="mx-auto d-flex">
-                        <img src="./imagenes/1617579128832.png"
-                            style="width:70px; height: 70px;" alt="Uffs, tuvimos
-                            un problema">
-                        <h1 class="display-3 text-center">
-                            TIO TAXI
-                        </h1>
+                        <img src="./imagenes/1617579128832.png" style="width:70px; height: 70px;" alt="Uffs, tuvimos un problema">
+                        <h1 class="display-3 text-center">TIO TAXI</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- 
-	    <nav>
-                <ul class=u_list_box>
-                    <li class=list_item><a href="">Tu taxi en vivo</a></li>
-                    <li class=list_item><a href="javascript:window.open('http://3.232.187.14:37778/ubicartaxi','','toolbar=yes');void 0">Ubica tu taxi</a></li>
-                </ul>
-	    </nav>
--->
-            <!-- diseño barra de navegacion-->
-            
+            <!-- diseño barra de navegacion-->          
             <ul class="nav mt-3 boder border-dark fondo2">
                 <li class="nav-item">
                     <a class="nav-link fs-5 text-white"  href="./index.html">Localizar</a>
                 </li>
                 <li class="nav-item"> 
-                    <a class="nav-link text-white fs-5"
-                        href="./ubicar.html">¿Donde
-                        estuvo?</a>
+                    <a class="nav-link text-white fs-5" href="./ubicar.html">¿Donde estuvo?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-5"
-                        href="./quienes_somos.html">Quienes
-                        somos</a>
+                    <a class="nav-link text-white fs-5" href="#">Quienes somos</a>
                 </li>
             </ul>
 
@@ -117,10 +92,8 @@
             <p class=""> Es el resultado del arduo trabajo realizado por un
                 grupo de
                 estudiantes de 9no semestre de ingenieria electronica en
-                <a class="text-decoration-none"
-                    href="https://www.uninorte.edu.co/"><i><b>Uninorte</b></i></a>
-                bajo la mentoria del <b> <i> Ing. Diego Gómez Cerón</i></b> en
-                la
+                <a class="text-decoration-none" href="https://www.uninorte.edu.co/"><i><b>Uninorte</b></i></a>
+                bajo la mentoria del <b> <i> Ing. Diego Gómez Cerón</i></b> en la
                 materia de <i> <b>Diseño Electrónico</b>. </i>
             </p>
 
@@ -133,11 +106,8 @@
                 <br>
 
                 <p class="px-5" style="text-align: justify;">
-
-
                     Magister en ingeniería Electrónica e Ingeniero Electrónico
-                    de
-                    la Universidad del Norte. Profesor Asistente e Investigador
+                    de la Universidad del Norte. Profesor Asistente e Investigador
                     Asociado en las áreas de telemetría geo-referenciada y de
                     automatización industrial. Miembro IEEE, Profesor Consejero
                     del Capítulo Industry Application Society, miembro de la
@@ -153,8 +123,7 @@
                             <li>Ingeniería Electrónica - Universidad del Norte.</li>
                         </ul>
                     </div>
-                    <h5 class="px-5">Investigaciones finalizadas (últimos 5
-                        años)</h5>
+                    <h5 class="px-5">Investigaciones finalizadas (últimos 5 años)</h5>
                     <div class="container container-fluid px-5">
                         <ul class="px-5 fs-6 fst-italic">
                             <li style="text-align: justify;">747-Formulación,
@@ -172,12 +141,9 @@
                                 Santanderes? - Coinvestigador - 2016</li>
                         </ul>
                     </div>
-
                 </p>
             </div>
-            
                 <img class="col-md-6 d-flex flex-wrap container container-fluid p-5" src="./imagenes/1531952876878.png" class="img-fluid" alt="...">
-            
         </div>
 
         <div class="w-100 container container-fluid fondo2"> <br></div>
@@ -196,11 +162,8 @@
             </p>
         </div>
 
-
-
-
-
     </body>
+
     <ul class="nav boder border-dark fondo2">
         <br>
     </ul>

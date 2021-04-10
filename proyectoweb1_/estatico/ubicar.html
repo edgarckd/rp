@@ -51,7 +51,7 @@
     <style>
         #map {
             width: cover;
-            height: 50vh;
+            height: 55vh;
         }
 
         #tabla {
@@ -91,10 +91,10 @@
             <!-- diseño barra de navegacion-->
             <ul class="nav mt-3 fondo2">
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-5" href="javascript: window.close();">Localizar</a>
+                    <a class="nav-link text-white fs-5" href="/estatico/index.html">Localizar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-5" href="">¿Donde estuvo?</a>
+                    <a class="nav-link text-white fs-5" href="#">¿Donde estuvo?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white fs-5" href="/estatico/quienes_somos.html">Quienes somos</a>
@@ -110,31 +110,30 @@
                 </div>
 
                 <!-- correcion del dieño de los calendarios-->
-                <form>
+                <form action="#">
                     <div class="row mt-3">
                         <div class="d-flex flex-wrap">
                             <div class="col-md-6 px-0 d-flex">
                                 <h4 class="mt-1">Desde:</h4>
-                                <input type="datetime-local" class="form-control"
-                                    id="calendario1" name="calendario1">
+                                <input type="datetime-local" class="form-control" id="calendario1" name="calendario1" onchange="verificar()">
                             </div>
                             <div class="col-md-6 px-0 d-flex">
                                 <h4 class="mt-1">Hasta:</h4>
-                                <input type="datetime-local" class="form-control" 
-                                    id="calendario2" name="calendario2">
+                                <input type="datetime-local" class="form-control" id="calendario2" name="calendario1" onchange="verificar()">
                             </div>
                         </div>
 
                         <div class="w-100"></div>
                         <div class="col-12 mt-3">
-                            <input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block">
+	  		<!--
+			    <input type="submit" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block">
+			-->
+                            <input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block" disabled="on">			    
                         </div>
                     </div>
                 </form>
 
-                <script src="https://code.jquery.com/jquery-3.6.0.js"
-                    integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="an">
-                </script>
+                <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="crossorigin="an"></script>
                 <script src="/estatico/calendar.js"></script>
 
             </main>
