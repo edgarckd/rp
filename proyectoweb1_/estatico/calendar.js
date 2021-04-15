@@ -5,7 +5,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     maxZoom:18, minZoom:9,
 }).addTo(map);
 
-polyline = L.polyline([], {color: 'red', smoothFactor: 0}).addTo(map);
+polyline = L.polyline([], {color: 'red', opacity: 0.8, weight: 5, smoothFactor: 0}).addTo(map);
 
 function formatofecha(date){
 
@@ -16,15 +16,25 @@ function formatofecha(date){
 
 	var mes = date.getMonth()+1; //obteniendo mes
 	var dia = date.getDate(); //obteniendo dia
+	var hora = date.getHours(); // obteniendo hora
 	var year = date.getFullYear(); //obteniendo año
+	var minuto = date.getMinutes(); // obteniendo minutos
 	if(dia<10){
-		dia='0'+dia; //agrega cero si el menor de 10
+		dia='0'+dia; //agrega cero si el año menor de 10
+		//console.log(dia)
 	}
 	if(mes<10){
-		mes='0'+mes //agrega cero si el menor de 10
+		mes='0'+mes //agrega cero si el mes menor de 10
 	}
+	if(hora<10){
+		hora='0'+hora; // agrega cero si la hora es menor a 10
+	}
+	if(minuto<10){
+		minuto='0'+minuto //agrega cero si el menor de 10
+	}
+
 	// Fecha y hora local con formato Date-time local - calendarios
-	var datetime = +year+"-"+mes+"-"+dia+"T"+date.getHours()+":"+date.getMinutes();
+	var datetime = +year+"-"+mes+"-"+dia+"T"+hora+":"+minuto;
 	//console.log(datenow)
 	return datetime
 }
@@ -32,7 +42,7 @@ function formatofecha(date){
 // Fecha y hora local:
 var date = new Date();
 var local = formatofecha(date)
-
+console.log(local)
 // Establece que el máximo valor por defecto de los calendarios es el día que sea realiza la consulta
 document.getElementById("calendario1").setAttribute("max", local)
 document.getElementById("calendario2").setAttribute("max", local)
@@ -48,25 +58,6 @@ function verificar(){
 
 	var cal1 = document.getElementById("calendario1").value;
 	var cal2 = document.getElementById("calendario2").value;
-
-	var split = cal1.split("T")
-	var fecha1 = split[0]
-	var hora1 = split[1]
-
-	// # de miliseg desde el 1 de enero de 1970
-	var inicial = Date.parse(fecha1+","+hora1);
-	var final = inicial + 86400000;
-	final1 =  new Date(final);
-
-	var final2 = formatofecha(final1);
-
-	// Fecha y hora local - milisegundos:
-	var datelocal = new Date();
-	var local = formatofecha(datelocal)
-	split = local.split("T")
-	var flocal = split[0]
-	var tlocal = split[1]
-	var mlocal = Date.parse(flocal+","+tlocal);
 
 	// 1.
 	if (cal1 == [] || cal2 == []) {
@@ -84,6 +75,7 @@ function verificar(){
 	if (cal2 != []){
 		document.getElementById("calendario1").setAttribute("max", cal2)
 	}
+
 }
 
 async function obtenerdatos(){
@@ -101,22 +93,28 @@ async function obtenerdatos(){
 	var cal2 = document.getElementById("calendario2").value;
 
 	try{
+		//var latlon = [];
 		const response = await fetch(`http://taxisweb.sytes.net:37778/ubicartaxi/${cal1};${cal2}`)
 		const data = await response.json();
 		const {rows} = data;
 		var latlon = Array(rows.length)
+		var popup1;
+		var popup2;
 
 		// escribir una matriz con los datos de latitud y longitud obtenidos de la base de datos
 		for (i = 0; i < rows.length; i++){
-			latlon[i] = ([rows[i].latitud, rows[i].longitud])
+			latlon[i] = L.latLng([rows[i].latitud, rows[i].longitud])
 		}
+
+		// map.setView(latlon[0])
+		console.log(latlon.length)
 
 		polyline.setLatLngs([latlon])
-		// map.setView(latlon[0])
 
-		if (latlon == []){
+		if (latlon.length == 0){
 			alert("NO DATA1")
 		}
+
 	}
 	catch(err){
 		alert("NO DATA")
