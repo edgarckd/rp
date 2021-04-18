@@ -1,6 +1,5 @@
 const express = require("express")
 var app = express()
-//var server = require('http').createServer(app)
 var data
 var lat
 var lon
@@ -15,11 +14,11 @@ app.listen(37778);
 app.use(express.static(__dirname));
 
 app.get('/', (request, response) => {
-  response.sendFile(path.join(__dirname + '/estatico/index.html'));
+	response.sendFile(path.join(__dirname + '/estatico/index.html'));
 });
 
 app.get('/ubicartaxi', (request, response) => {
-  response.sendFile(path.join(__dirname + '/estatico/ubicar.html'));
+	response.sendFile(path.join(__dirname + '/estatico/ubicar.html'));
 });
 
 // conexión con la base de datos
@@ -27,66 +26,98 @@ const {pool,Client}= require("pg")
 const connectionString="postgressql://juanc:juancamilo22@database3.cphvv1knh4lu.us-east-1.rds.amazonaws.com:5431/serverdb"
 
 const client = new Client({
-  connectionString:connectionString
+	connectionString:connectionString
 })
 
 client.connect()
 
 
 app.get("/ubicartaxi/:id", (req,res) => {
-/*
-  var {id} = req.params;
-  res.send(id);
-*/
 
-  var {id} = req.params;
-  id = id.split(";");
-  const inicio = id[0].split("T");
-  const final = id[1].split("T");
+	var {id} = req.params;
+	console.log("esto es id "+id)
+	id = id.split(";");
+	var taxi = id[0];
+	const inicio = id[1].split("T");
+	const final = id[2].split("T");
 
-  client.query(`SELECT "latitud","longitud","time" FROM public.geodatos WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
-  (err, rows, fields) => {
-  if (!err) {
-  res.json(rows);
-  } else {
-  console.log("errorSelect",err);
-  }
-  });
+	if(taxi == "1"){
+		client.query(`SELECT * FROM public.geodatos2 WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
+			(err, rows, fields) => {
+			if (!err) {
+				res.json(rows.rows);
+			} else {
+				console.log("errorSelect",err);
+			}
+		});
+	} else if (taxi == "2"){
+		client.query(`SELECT * FROM public.geodatos WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
+			(err, rows, fields) => {
+			if (!err) {
+				res.json(rows.rows);
+			} else {
+				console.log("errorSelect",err);
+			}
+		});
+	}
+
 
 });
 
 // sniffer udp
 const dgram = require('dgram');
 
-//ejecuto el metodo create socket para que me devuelva un objeto en la variable datos
+// taxi 1
 const datos = dgram.createSocket('udp4');
-
-//cacho error del socket
 datos.on('error', (err) => {
-  console.log(`server error:\n${err.stack}`);
-  datos.close();
+	console.log(`server error:\n${err.stack}`);
+	datos.close();
 });
-
-//obtengo de datos el mensaje que envio desde la app
-//SINFFER
 datos.on('message', (msg, rinfo) =>  {
-  msg = msg.toString()
-  fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg, err => {
-    if (err) throw err;
-  })
-  console.log(msg)
-  data = msg.split("/")
-  lat = ("\'"+data[0]+"\'")
-  lon = ("\'"+data[1]+"\'")
-  tim = ("\'"+data[2]+"\'")
-  console.log(lat)
+	var msg1 = msg.toString()
+	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg1, err => {
+	if (err) throw err;
+	})
+	console.log(msg1)
+	data = msg1.split("/")
+	lat = ("\'"+data[0]+"\'")
+	lon = ("\'"+data[1]+"\'")
+	tim = ("\'"+data[2]+"\'")
+	console.log("taxi1: "+lat)
+
+	client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
+ 	 console.log(err,res);
+  	})
 });
-
-setInterval(function() {
-  client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
-      console.log(err,res);
-  })
-},5000)
-
-// Fijación del puerto UDP
 datos.bind(37777);
+// fin: taxi 1
+
+// taxi 2
+var lat2;
+var lon2;
+var tim2;
+var data2;
+const datos2 = dgram.createSocket('udp4');
+datos2.on('error', (err) => {
+	console.log(`server error:\n${err.stack}`);
+	console.log("error en taxi2");
+	datos2.close();
+});
+datos2.on('message', (msg, rinfo) =>  {
+        var msg2 = msg.toString();
+        fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result2.txt', msg2, err => {
+        if (err) throw err;
+        })
+        console.log(msg2);
+        data2 = msg2.split("/");
+        lat2 = ("\'"+data2[0]+"\'");
+        lon2 = ("\'"+data2[1]+"\'");
+        tim2 = ("\'"+data2[2]+"\'");
+        console.log("taxi2: "+lat2);
+
+	client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES ('+lat2+','+lon2+','+tim2+');', (err,res)=>{
+	 console.log(err,res);
+  	})
+});
+datos2.bind(37776);
+// fin: taxi 2
