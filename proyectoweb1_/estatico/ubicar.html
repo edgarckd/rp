@@ -125,7 +125,7 @@
                                 <input type="datetime-local" class="form-control" id="calendario1" name="calendario1" onchange="verificar()">
                             </div>
                             <div class="col-md-6 px-0 d-flex">
-                                <h4 class="mt-1">Hasta:</h4>
+                                <h4 class="mt-1"><label for="calendario2">Hasta:</label><br></h4>
                                 <input type="datetime-local" class="form-control" id="calendario2" name="calendario1" onchange="verificar()">
                             </div>
                         </div>
@@ -135,6 +135,12 @@
 	  		<!--
 			    <input type="submit" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block">
 			-->
+                            <input type="radio" id="taxi1" name="taxis" value="taxi1">
+                            <label for="taxi1">Taxi 1: AMV569</label><br>
+                            <input type="radio" id="taxi2" name="taxis" value="taxi2">
+                            <label for="taxi2">Taxi 2: YLK650</label><br>
+                            <input type="radio" id="ambos" name="taxis" value="ambos">
+                            <label for="ambos">Ambos</label><br>
                             <input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block" disabled="on">			    
                         </div>
                     </div>

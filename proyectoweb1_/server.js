@@ -31,7 +31,6 @@ const client = new Client({
 
 client.connect()
 
-
 app.get("/ubicartaxi/:id", (req,res) => {
 
 	var {id} = req.params;
@@ -42,26 +41,24 @@ app.get("/ubicartaxi/:id", (req,res) => {
 	const final = id[2].split("T");
 
 	if(taxi == "1"){
-		client.query(`SELECT * FROM public.geodatos2 WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
-			(err, rows, fields) => {
-			if (!err) {
-				res.json(rows.rows);
-			} else {
-				console.log("errorSelect",err);
-			}
-		});
-	} else if (taxi == "2"){
 		client.query(`SELECT * FROM public.geodatos WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
 			(err, rows, fields) => {
-			if (!err) {
-				res.json(rows.rows);
-			} else {
-				console.log("errorSelect",err);
-			}
+		if (!err) {
+			res.json(rows.rows);
+		} else {
+			console.log("errorSelect",err);
+		}
+	});
+	} else if (taxi == "2"){
+		client.query(`SELECT * FROM public.geodatos2 WHERE "time" >= \'${inicio}\' AND "time" <= \'${final}\'`,
+			(err, rows, fields) => {
+		if (!err) {
+			res.json(rows.rows);
+		} else {
+			console.log("errorSelect",err);
+		}
 		});
 	}
-
-
 });
 
 // sniffer udp
@@ -84,10 +81,10 @@ datos.on('message', (msg, rinfo) =>  {
 	lon = ("\'"+data[1]+"\'")
 	tim = ("\'"+data[2]+"\'")
 	console.log("taxi1: "+lat)
-
+	console.log("insertando datos ")
 	client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
- 	 console.log(err,res);
-  	})
+		console.log(err,res);
+	});
 });
 datos.bind(37777);
 // fin: taxi 1
@@ -104,20 +101,20 @@ datos2.on('error', (err) => {
 	datos2.close();
 });
 datos2.on('message', (msg, rinfo) =>  {
-        var msg2 = msg.toString();
-        fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result2.txt', msg2, err => {
-        if (err) throw err;
-        })
-        console.log(msg2);
-        data2 = msg2.split("/");
-        lat2 = ("\'"+data2[0]+"\'");
-        lon2 = ("\'"+data2[1]+"\'");
-        tim2 = ("\'"+data2[2]+"\'");
-        console.log("taxi2: "+lat2);
-
+	var msg2 = msg.toString();
+	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result2.txt', msg2, err => {
+		if (err) throw err;
+	})
+	console.log(msg2);
+	data2 = msg2.split("/");
+	lat2 = ("\'"+data2[0]+"\'");
+	lon2 = ("\'"+data2[1]+"\'");
+	tim2 = ("\'"+data2[2]+"\'");
+	console.log("taxi2: "+lat2);
+	console.log("insertando datos2 ")
 	client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES ('+lat2+','+lon2+','+tim2+');', (err,res)=>{
-	 console.log(err,res);
-  	})
+		console.log(err,res);
+	});
 });
 datos2.bind(37776);
 // fin: taxi 2

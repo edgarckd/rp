@@ -1,7 +1,3 @@
-var cont=0;
-var marker1;
-let arraypoly=[];
-
 var map = L.map("map").setView([10.982088,-74.783445],13);
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -24,9 +20,10 @@ var myIcon = L.icon({
     iconAnchor: [15, 15],
     popupAnchor: [0,-15],
 });
+
 var edgeMarkerLayer = L.edgeMarker({
       icon: L.icon({ // style markers
-          iconUrl: 'https://image.flaticon.com/icons/png/128/892/892646.png',
+          iconUrl: 'https://image.flaticon.com/icons/png/128/853/853997.png',
           clickable: true,
           iconSize: [30, 30],
           iconAnchor: [15, 15]
@@ -34,6 +31,7 @@ var edgeMarkerLayer = L.edgeMarker({
 	rotateIcons: true,
 	layerGroup: null
 }).addTo(map);
+
 var popup1 = "Taxi No:1 <br> Placa: AVM569 <br>";
 var popup2 = "Taxi No:2 <br> Placa: YLK650 <br>";
 var marker1 = L.marker([0,0],{icon: myIcon}).bindPopup(popup1,{autoClose: false}).addTo(map);
@@ -48,50 +46,45 @@ var polyline2 = L.polyline([], {color: 'blue', opacity: 0.6, weight: 4, lineJoin
 * Contiene dos jQuery embeidos que toman los datos de los archivos y los añaden a la matriz de datos de la polilínea
 * Se añade la información de posición y tiempo medido de cada taxi a su respectivo marcador
 */
+
 function readFile(){
-
 	try{
-	        jQuery.get('/estatico/result.txt', function(data){
+		jQuery.get('/estatico/result.txt', function(data){
 
-	                var split = data.split("/")
+			var split = data.split("/")
 
-	                data1 =split[0]
-	                data2 =split[1]
-	                data3 =split[2]
+			data1 =split[0]
+			data2 =split[1]
+			data3 =split[2]
 
-	                $('#output1').text(data1)
-	                $('#output2').text(data2)
-	                $('#output3').text(data3)
+			if (data1 != null && data2 != null && data3 != null) {
+				var latlng1 = L.latLng(data1,data2);
+				taxi1.push(latlng1);
+				polyline.setLatLngs([taxi1])
+				marker1.setLatLng(latlng1).setPopupContent(popup1+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
+				//map.setView(latlng1)
+			}
 
-	                var latlng1 = L.latLng(data1,data2);
-	                taxi1.push(latlng1);
-			polyline.setLatLngs([taxi1])
-	                marker1.setLatLng(latlng1).setPopupContent(popup1+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
-	                //map.setView(latlng1)
-
-		        jQuery.get('/estatico/result2.txt', function(data2){
-
-		                var split2 = data2.split("/")
-
-		                data1 =split2[0]
-		                data2 =split2[1]
-		                data3 =split2[2]
-
-		                /*$('#output1').text(data1)
-		                $('#output2').text(data2)
-		                $('#output3').text(data3)
-		                */
-
-		                var latlng2 = L.latLng(data1,data2);
-		                taxi2.push(latlng2);
-				polyline2.setLatLngs([taxi2]);
-		                marker2.setLatLng(latlng2).setPopupContent(popup2+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
-		                //map.setView([data1,data2])
-
-		        });
 		});
+
+		jQuery.get('/estatico/result2.txt', function(data2){
+
+			var split2 = data2.split("/")
+
+			data1 =split2[0]
+			data2 =split2[1]
+			data3 =split2[2]
+
+			if (data1 != null && data2 != null && data3 != null) {
+				var latlng2 = L.latLng(data1,data2);
+				taxi2.push(latlng2);
+				polyline2.setLatLngs([taxi2]);
+				marker2.setLatLng(latlng2).setPopupContent(popup2+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
+				//map.setView([data1,data2])
+			}
+		});
+
 	} catch(err){
 		console.log("hubo un error");
 	}
-
 }setInterval(readFile,1500);
