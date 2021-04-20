@@ -3,6 +3,7 @@
     "express": "^4.17.1",
     "leaflet-ant-path": "^1.3.0",
     "leaflet-arrowheads": "^1.2.2",
+    "leaflet-dialog": "^1.0.5",
     "leaflet-extra-markers": "^1.2.1",
     "leaflet-polylinedecorator": "^1.6.0",
     "leaflet.bezier": "^0.1.1"

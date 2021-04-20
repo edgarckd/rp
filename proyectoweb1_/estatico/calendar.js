@@ -1,4 +1,8 @@
-var map = L.map("map").setView([10.982088,-74.783445],12);
+var map = L.map("map").setView([10.980074,-74.804948],12)
+
+map.addControl(new L.Control.Fullscreen());
+var dialog = L.control.dialog({size: [280,180], anchor: [-188,0], position: "bottomleft"});
+var imgError = "<img src='https://image.flaticon.com/icons/png/128/1179/1179237.png' alt='warning' width='45' height='45'>"
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -126,12 +130,13 @@ x[2].checked = true;
 var i=1;
 async function obtenerdatos(){
 
-	map.setView([10.982088,-74.783445],12);
+	map.setView([10.980074,-74.804948],12);
 	polyline.setLatLngs([]);
 	polyline2.setLatLngs([]);
 	var cal1 = document.getElementById("calendario1").value;
 	var cal2 = document.getElementById("calendario2").value;
 
+	dialog.destroy()
 	markersGroup.removeLayer(marker11);
 	markersGroup.removeLayer(marker21);
 	markersGroup.removeLayer(marker12);
@@ -142,12 +147,12 @@ async function obtenerdatos(){
 	} else if (x[1].checked == true) {
 		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2);
 	} else {
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1);
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2);
+		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
+		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
 	}
 }
 
-async function mostrarRecorrido(fetchParam,taxiNo){
+async function mostrarRecorrido(fetchParam,taxiNo,k){
 
 	response = await fetch(fetchParam);
 
@@ -181,7 +186,10 @@ async function mostrarRecorrido(fetchParam,taxiNo){
 		} else {
 			markersGroup.removeLayer(marker11);
 			markersGroup.removeLayer(marker21);
-			alert("No hay datos del taxi "+taxiNo+" para la ventana de tiempo seleccionada");
+			//alert("No hay datos del taxi "+taxiNo+" para la ventana de tiempo seleccionada");
+			if(k!=0){
+				dialog.setContent("<h3>Error!</h3><p>No hay datos del Taxi "+taxiNo+" para la ventana de tiempo seleccionada</p>"+imgError).addTo(map)
+			}else{dialog.setContent("<h3>Error!</h3><p>No hay datos del Taxi 1 o 2 para la ventana de tiempo seleccionada</p>"+imgError).addTo(map)}
 		}
 	} else if (taxiNo==2) {
 		var poly = polyline2;
@@ -213,8 +221,40 @@ async function mostrarRecorrido(fetchParam,taxiNo){
 		} else {
 			markersGroup.removeLayer(marker11);
 			markersGroup.removeLayer(marker21);
-			alert("No hay datos del taxi "+taxiNo+" para la ventana de tiempo seleccionada");
+			//alert("No hay datos del taxi "+taxiNo+" para la ventana de tiempo seleccionada");
+			if(k!=0){
+				dialog.setContent("<h3>Error!</h3><p>No hay datos del Taxi "+taxiNo+" para la ventana de tiempo seleccionada</p>"+imgError).addTo(map)
+			}
 		}
 	}
 
 }
+
+var fullscreenMenu = L.control.dialog({size: [300,370], anchor: [0,-309], position: "topright"});
+var fsMenu1 = "<h4>En pantalla completa también puedes seleccionar qué quieres ver</h4>";
+//var dialogScript2 = "";
+var fsMenu2 = '<form name="formulario"><div class="row mt-3"><div class="d-flex flex-wrap"><div class="col-md-12 px-0 d-flex"><h5 class="mt-1">Desde: </h5>';
+var fsMenu3 = '<input type="datetime-local" class="form-control" id="calendario1" name="calendario1" onchange="verificar()"></div>';
+var fsMenu4 = '<div class="col-md-12 px-0 d-flex"><h5 class="mt-1">Hasta::</h5><input type="datetime-local" class="form-control" id="calendario2" name="calendario1" onchange="verificar()">';
+var fsMenu5 = '</div></div><div class="w-100"></div><div class="col-12 mt-3">';
+var fsMenu6 = '<input type="radio" id="taxi1" name="taxis" value="taxi1"><label for="taxi1">Taxi 1: AMV569</label><br><input type="radio" id="taxi2" name="taxis" value="taxi2">';
+var fsMenu7 = '<label for="taxi2">Taxi 2: YLK650</label><br><input type="radio" id="ambos" name="taxis" value="ambos"><label for="ambos">Ambos</label><br>';
+var fsMenu8 = '<input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block" disabled="on">';
+var fsMenu9 = '</div></div></form>';
+var contenidoMenu = [fsMenu2+fsMenu3+fsMenu4+fsMenu5+fsMenu6+fsMenu7+fsMenu8+fsMenu9];
+
+map.on('fullscreenchange', function () {
+    if (map.isFullscreen()) {
+        console.log('entered fullscreen');
+	var x = document.getElementsByName("taxis");
+	x[2].checked = true;
+	fullscreenMenu.setContent(fsMenu1+contenidoMenu).addTo(map)
+	document.getElementById("calendario1").setAttribute("max", local);
+	document.getElementById("calendario2").setAttribute("max", local);
+	verificar();
+    } else {
+        //console.log('exited fullscreen');
+	fullscreenMenu.close()
+    }
+});
+

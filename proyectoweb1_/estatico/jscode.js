@@ -1,4 +1,5 @@
 var map = L.map("map").setView([10.982088,-74.783445],13);
+map.addControl(new L.Control.Fullscreen());
 
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
