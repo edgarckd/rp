@@ -99,7 +99,7 @@
                         estuvo?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-6" href="#">Quienes somos</a>
+                    <a class="nav-link text-white fs-6" href="./quienes_somos.html">Quienes somos</a>
                 </li>
             </div>
 
@@ -134,14 +134,14 @@
                     <!--
 			    <input type="submit" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block">
 			-->
-                    <input type="radio" id="taxi1" name="taxis" value="taxi1">
-                    <label for="taxi1">Taxi 1: AMV569</label><br>
-                    <input type="radio" id="taxi2" name="taxis" value="taxi2">
-                    <label for="taxi2">Taxi 2: YLK650</label><br>
-                    <input type="radio" id="ambos" name="taxis" value="ambos">
-                    <label for="ambos">Ambos</label><br>
+                    <select class="form-select form-select-bg-size:12px 12px; " aria-label="Default select example">
+                        <option selected>Seleccione el vehiculo a visualizar</option>
+                        <option id="taxi1" value="taxi1">Taxi 1</option>
+                        <option id="taxi2" value="taxi2">Taxi 2</option>
+                        <option id="taxi3" value="ambos">Taxi 3</option>
+                    </select>
                     <input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()"
-                        class="btn btn-secondary mx-auto d-block" disabled="on">
+                        class="btn btn-secondary mx-auto d-block bajar" disabled="on">
                 </div>
             </div>
         </form>
@@ -153,9 +153,15 @@
     </main>
 
 </body>
+<footer class="footer">
+    <NAV>
+        <P><A HREF="/credits.html">Credits</A> —
+            <A HREF="/tos.html">Terms of Service</A> —
+            <A HREF="/index.html">Blog Index</A>
+        </P>
+    </NAV>
+    <P>Copyright © 2009 Gordon Freeman</P>
+</footer>
 
-<ul class="nav boder border-dark fondo2 mt-4">
-    <br>
-</ul>
 
 </html>
