@@ -9,8 +9,8 @@
     <title>TIO TAXIS | Quienes somos </title>
 
     <!-- Esto crea el icono en el titulo-->
-    <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/>
-        <link rel=" apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/">
+    <link rel=" apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./imagenes/apple-icon-72x72.png">
     <link rel="apple-touch-icon" sizes="76x76" href="./imagenes/apple-icon-76x76.png">
     <link rel="apple-touch-icon" sizes="114x114" href="./imagenes/apple-icon-114x114.png">
@@ -96,6 +96,7 @@
           del carrusel*/
         opacity: 0.3;
     }
+
     .carousel__container:hover .carousel-item:hover {
         /*Se amplia el elemento al que se le aplica el 
           hover y se exceptua de la opaciadad a aquel al 
@@ -106,7 +107,7 @@
 
     .carousel-item__details {
         /* hace el efecto visual en el item al poner texto*/
-        background: linear-gradient( rgb(39, 38, 38) 10%, rgba(8, 86, 105, 0.356) 100%);
+        background: linear-gradient(rgb(39, 38, 38) 10%, rgba(8, 86, 105, 0.356) 100%);
         font-size: 10px;
         padding: 10px;
         position: absolute;
@@ -119,20 +120,25 @@
     }
 </style>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v10.0"
+    nonce="CABb194f"></script>
+
+
 <body class="body p-0">
 
-    <header class="container-fluid mt-1 " >
+    <header class="container-fluid mt-1">
 
         <!-- el container hace que encabezado cubra la extension de la pantalla-->
-        
+
 
         <!-- diseño barra de navegacion-->
-        <ul class="nav  fondo2 grosor centrar fijar">
+        <ul class="nav  fondo2 grosor centrar fijar sombra">
             <div class="row">
 
                 <!-- crea una fila con columnas dentro-->
                 <div class="col-lg-12 h-100 d-flex">
-    
+
                     <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
                     <div class="mx-auto d-flex">
                         <img src="./imagenes/1617579128832.png" style="width:70px; height: 70px;" alt="Uffs, tuvimos
@@ -141,7 +147,7 @@
                     </div>
                 </div>
             </div>
-                        
+
             <li class="nav-item">
                 <a class="nav-link fs-6 text-white" href="./index.html">Localizar</a>
             </li>
@@ -156,7 +162,7 @@
 
     </header>
 
-    <div class="mt-3 mx-3 p-3" style="text-align: justify;">
+    <div class="bajar mx-3 p-3" style="text-align: justify;">
         <p>Tio Taxi es una plataforma de geolocalización de vehiculos en
             tiempo real y a traves del tiempo, por medio de una base de
             datos
@@ -177,51 +183,25 @@
     <div class="d-flex flex-wrap">
         <div class="col-md-6 container container-fluid p-4">
 
-            <h5 class="px-4 text-lg-center"> Diego Gómez Cerón</h5>
+            <h5 class="px-4 text-lg-center"> Diseño Electrónico</h5>
             <br>
 
             <p class="px-5" style="text-align: justify;">
-                Magister en ingeniería Electrónica e Ingeniero Electrónico
-                de la Universidad del Norte. Profesor Asistente e
-                Investigador
-                Asociado en las áreas de telemetría geo-referenciada y de
-                automatización industrial. Miembro IEEE, Profesor Consejero
-                del Capítulo Industry Application Society, miembro de la
-                Sociedad de Robótica y Automatización, miembro del Grupo de
-                Investigación en Robótica y Sistemas Inteligentes -GIRSI- de
-                la Universidad del Norte. Gestor de Beneficios Tributarios
-                para Proyectos en CTeI.
-            <h5 class="px-5">Estudios:</h5>
-            <div class="container container-fluid px-5 fs">
-                <ul class="px-5">
-                    <li>Maestría en Ingeniería Electrónica - Universidad
-                        del Norte.</li>
-                    <li>Ingeniería Electrónica - Universidad del Norte.</li>
-                </ul>
-            </div>
-            <h5 class="px-5">Investigaciones finalizadas (últimos 5
-                años)</h5>
-            <div class="container container-fluid px-5">
-                <ul class="px-5 fs-6 fst-italic">
-                    <li style="text-align: justify;">747-Formulación,
-                        Asistencia en Gestión de
-                        Presentación y Supervisión del Proyecto de
-                        Innovación -Diseño Concurrente, Automatización y
-                        Optimización de Operaciones y Equipos de Proceso
-                        en la Planta de Herbicidas, Fungicidas e
-                        Insecticidas - Investigador Principal - 2019</li>
-                    <li style="text-align: justify;">Regalías: Análisis
-                        de los Factores Clave de la
-                        Competitividad para la Construcción de un Nuevo
-                        Modelo de Territorio Inteligente en la Región
-                        Caribe y Santanderes ¿Diamante Caribe y
-                        Santanderes? - Coinvestigador - 2016</li>
-                </ul>
-            </div>
+                Esta asignatura consolida una metodología para la planeación y ejecución de proyectos de sistemas
+                electrónicos empleados en la ingeniería del control, en los medios de transmisión y en las
+                comunicaciones de señales.Se pretende estructurar en el estudiante la metodología para llevar a cabo
+                proyectos de ingeniería en el que se logren el diseño y la construcción de sistemas electrónicos como
+                sistemas de sensado, plataformas de procesamiento, dispositivos actuadores; utilizados en la ingeniería
+                del control, en los medios de transmisión o en las comunicaciones de señales. Se considera el análisis
+                de estos circuitos basados en criterios de diseño donde el estudiante desarrolla su capacidad para
+                determinar la escogencia de dispositivos según los problemas que se planteen. Se establecen diversas
+                alternativas para cada elemento del diseño donde el estudiante mediante un análisis comparativo
+                justifica qué alternativa es más conveniente. El desarrollo del curso implica el uso exhaustivo de
+                herramientas de hardware y software de diversos niveles y enfoques.
             </p>
         </div>
-        <img class="col-md-6 d-flex flex-wrap container container-fluid p-5" src="./imagenes/1531952876878.png"
-            class="img-fluid" alt="...">
+        <img class="col-md-6 d-flex flex-wrap container container-fluid p-5" src="./imagenes/mp-proyectos-educativo-uninorte-2.jpg"
+            class="img-fluid" alt="Foto del K">
     </div>
 
     <div class="w-100 container container-fluid fondo2"> <br></div>
@@ -256,7 +236,7 @@
 
         </div>
         <div class="w-100 container container-fluid"></div>
-        
+
 
     </div>
 
@@ -274,10 +254,11 @@
                         para
                         darle a nuestro diseño una mejor apariencia."
                     </p>
-                    <div class="contacto">                        <p>
+                    <div class="contacto">
+                        <p>
                             contacto:
                         </p>
-                        <P class="mx-3" >
+                        <P class="mx-3">
                             Eapaez@uninorte.edu.co
                             <br>
                             +57 3195188515
@@ -361,6 +342,10 @@
             </div>
         </div>
     </section>
+
+
+    <div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator"
+        data-width="100%" data-numposts="1"></div>
 </body>
 
 <ul class="nav boder border-dark fondo2 m-5">
