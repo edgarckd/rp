@@ -1,335 +1,372 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="description" content="Esta página muestra la geolocalización
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Esta página muestra la geolocalización
             de tu vehículo" />
-        <meta name="robots" content="index,follow" />
-        <title>TIO TAXIS | Quienes somos </title>
+    <meta name="robots" content="index,follow" />
+    <title>TIO TAXIS | Quienes somos </title>
 
-        <!-- Esto crea el icono en el titulo-->
-        <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/>
-        <link rel="apple-touch-icon" sizes="60x60"
-            href="./imagenes/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72"
-            href="./imagenes/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76"
-            href="./imagenes/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114"
-            href="./imagenes/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120"
-            href="./imagenes/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144"
-            href="./imagenes/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152"
-            href="./imagenes/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180"
-            href="./imagenes/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192"
-            href="./imagenes/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32"
-            href="./imagenes/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96"
-            href="./imagenes/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16"
-            href="./imagenes/favicon-16x16.png">
-        <link rel="manifest" href="./imagenes/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage"
-            content="/./imagenes/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <!--se conecta con CSS-->
-        <link rel="stylesheet" href="./style.css">
+    <!-- Esto crea el icono en el titulo-->
+    <link rel="apple-touch-icon" sizes="57x57" href="./imagenes/>
+        <link rel=" apple-touch-icon" sizes="60x60" href="./imagenes/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./imagenes/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./imagenes/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./imagenes/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./imagenes/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./imagenes/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./imagenes/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./imagenes/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./imagenes/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./imagenes/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./imagenes/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./imagenes/favicon-16x16.png">
+    <link rel="manifest" href="./imagenes/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/./imagenes/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--se conecta con CSS-->
+    <link rel="stylesheet" href="./style.css">
 
-        <!-- se importa boostrap para el diseño -->
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-            crossorigin="anonymous">
+    <!-- se importa boostrap para el diseño -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
-        <link rel="stylesheet"
-            href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-            integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="crossorigin=""
-            />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
 
-        <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-            integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="crossorigin=""></script>
-    </head>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+</head>
 
-    <body class="body">
+<style>
+    /* Este el que va contener los otros carouseles */
+    .carousel {
+        width: 100%;
+        overflow: hidden;
+        padding: 30px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
 
-        <ul class="nav boder border-dark fondo2">
-            <br>
-        </ul>
+    .carousel__container {
+        white-space: wrap;
+        margin: 70px 0;
+        padding-bottom: 10px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
 
-        <header class="container-fluid mt-3">
+    .carousel-item {
+        width: 200px;
+        height: 250px;
+        border-radius: 20px;
+        background-color: rgb(43, 43, 44);
+        overflow: hidden;
+        margin-right: 10px;
+        display: inline-block;
+        cursor: pointer;
+        transition: 300ms all;
+        /*es el tiempo de la tansicion */
+        /*Esto es para que la animacion empiece desde el centro y se realice de izquierda a derecha*/
+        transform-origin: center;
+        position: relative;
+        margin-top: 7px;
+    }
 
-            <!-- el container hace que encabezado cubra la extension de la pantalla-->
+    .carousel-item:hover~.carousel-item {
+        /* hace que cuando este el puntero sobre el item 
+          se genera la animación */
+        /*Esto es para añadir una animacion que se expanda 
+          el elemento al que se le hace el hover y los demás 
+          se rueden dandole espacio a este para expandirse*/
+        transform: translate3d(100px, 0, 100px);
+        /*hace que cuando e ponga el cursor sobre item, los
+          demas se rueden*/
+    }
+
+    .carousel__container:hover .carousel-item {
+        /*Se le da opacidad a cada uno de los elementoss 
+          del carrusel*/
+        opacity: 0.3;
+    }
+    .carousel__container:hover .carousel-item:hover {
+        /*Se amplia el elemento al que se le aplica el 
+          hover y se exceptua de la opaciadad a aquel al 
+          que se le aplica el hover*/
+        transform: scale(1.5);
+        opacity: 1;
+    }
+
+    .carousel-item__details {
+        /* hace el efecto visual en el item al poner texto*/
+        background: linear-gradient( rgb(39, 38, 38) 10%, rgba(8, 86, 105, 0.356) 100%);
+        font-size: 10px;
+        padding: 10px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        color: blanchedalmond;
+        text-align: justify;
+    }
+</style>
+
+<body class="body p-0">
+
+    <header class="container-fluid mt-1 " >
+
+        <!-- el container hace que encabezado cubra la extension de la pantalla-->
+        
+
+        <!-- diseño barra de navegacion-->
+        <ul class="nav  fondo2 grosor centrar fijar">
             <div class="row">
 
                 <!-- crea una fila con columnas dentro-->
                 <div class="col-lg-12 h-100 d-flex">
-
+    
                     <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
                     <div class="mx-auto d-flex">
-                        <img src="./imagenes/1617579128832.png"
-                            style="width:70px; height: 70px;" alt="Uffs, tuvimos
-                            un problema">
-                        <h1 class="display-3 text-center">TIO TAXI</h1>
+                        <img src="./imagenes/1617579128832.png" style="width:70px; height: 70px;" alt="Uffs, tuvimos
+                                un problema">
+                        <h1 class="display-3 text-center text-white">TIO TAXI</h1>
                     </div>
                 </div>
             </div>
+                        
+            <li class="nav-item">
+                <a class="nav-link fs-6 text-white" href="./index.html">Localizar</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-6" href="./ubicar.html">¿Donde
+                    estuvo?</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white fs-6" href="#">Quienes somos</a>
+            </li>
+        </ul>
 
-            <!-- diseño barra de navegacion-->
-            <ul class="nav mt-3 boder border-dark fondo2">
-                <li class="nav-item">
-                    <a class="nav-link fs-5 text-white" href="./index.html">Localizar</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fs-5" href="./ubicar.html">¿Donde
-                        estuvo?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fs-5" href="#">Quienes somos</a>
-                </li>
-            </ul>
+    </header>
 
-        </header>
+    <div class="mt-3 mx-3 p-3" style="text-align: justify;">
+        <p>Tio Taxi es una plataforma de geolocalización de vehiculos en
+            tiempo real y a traves del tiempo, por medio de una base de
+            datos
+            que registra de manera ininterrumpida la ubicación de los
+            vehiculos vigilados.
+        </p>
+        <p class=""> Es el resultado del arduo trabajo realizado por un
+            grupo de
+            estudiantes de 9no semestre de ingenieria electronica en
+            <a class="text-decoration-none" href="https://www.uninorte.edu.co/"><i><b>Uninorte</b></i></a>
+            bajo la mentoria del <b> <i> Ing. Diego Gómez Cerón</i></b> en
+            la
+            materia de <i> <b>Diseño Electrónico</b>. </i>
+        </p>
 
-        <div class="mt-3 mx-3 p-3" style="text-align: justify;">
-            <p>Tio Taxi es una plataforma de geolocalización de vehiculos en
-                tiempo real y a traves del tiempo, por medio de una base de
-                datos
-                que registra de manera ininterrumpida la ubicación de los
-                vehiculos vigilados.
+    </div>
+    <div class="w-100 container container-fluid"></div>
+    <div class="d-flex flex-wrap">
+        <div class="col-md-6 container container-fluid p-4">
+
+            <h5 class="px-4 text-lg-center"> Diego Gómez Cerón</h5>
+            <br>
+
+            <p class="px-5" style="text-align: justify;">
+                Magister en ingeniería Electrónica e Ingeniero Electrónico
+                de la Universidad del Norte. Profesor Asistente e
+                Investigador
+                Asociado en las áreas de telemetría geo-referenciada y de
+                automatización industrial. Miembro IEEE, Profesor Consejero
+                del Capítulo Industry Application Society, miembro de la
+                Sociedad de Robótica y Automatización, miembro del Grupo de
+                Investigación en Robótica y Sistemas Inteligentes -GIRSI- de
+                la Universidad del Norte. Gestor de Beneficios Tributarios
+                para Proyectos en CTeI.
+            <h5 class="px-5">Estudios:</h5>
+            <div class="container container-fluid px-5 fs">
+                <ul class="px-5">
+                    <li>Maestría en Ingeniería Electrónica - Universidad
+                        del Norte.</li>
+                    <li>Ingeniería Electrónica - Universidad del Norte.</li>
+                </ul>
+            </div>
+            <h5 class="px-5">Investigaciones finalizadas (últimos 5
+                años)</h5>
+            <div class="container container-fluid px-5">
+                <ul class="px-5 fs-6 fst-italic">
+                    <li style="text-align: justify;">747-Formulación,
+                        Asistencia en Gestión de
+                        Presentación y Supervisión del Proyecto de
+                        Innovación -Diseño Concurrente, Automatización y
+                        Optimización de Operaciones y Equipos de Proceso
+                        en la Planta de Herbicidas, Fungicidas e
+                        Insecticidas - Investigador Principal - 2019</li>
+                    <li style="text-align: justify;">Regalías: Análisis
+                        de los Factores Clave de la
+                        Competitividad para la Construcción de un Nuevo
+                        Modelo de Territorio Inteligente en la Región
+                        Caribe y Santanderes ¿Diamante Caribe y
+                        Santanderes? - Coinvestigador - 2016</li>
+                </ul>
+            </div>
             </p>
-            <p class=""> Es el resultado del arduo trabajo realizado por un
-                grupo de
-                estudiantes de 9no semestre de ingenieria electronica en
-                <a class="text-decoration-none"
-                    href="https://www.uninorte.edu.co/"><i><b>Uninorte</b></i></a>
-                bajo la mentoria del <b> <i> Ing. Diego Gómez Cerón</i></b> en
-                la
-                materia de <i> <b>Diseño Electrónico</b>. </i>
+        </div>
+        <img class="col-md-6 d-flex flex-wrap container container-fluid p-5" src="./imagenes/1531952876878.png"
+            class="img-fluid" alt="...">
+    </div>
+
+    <div class="w-100 container container-fluid fondo2"> <br></div>
+
+    <div class="container container-fluid">
+        <h5 class="pt-2 text-lg-center fw-bold"> Estudiantes involucrados en
+            el
+            proyecto
+        </h5>
+        <div class="mt-3 mx-5">
+            <p class="" style="text-align: justify;">
+
+                Nuestro grupo está conformado Edgar Alfonso Páez Barros,
+                Juan Camilo Menco Serrano, Kevin De Jesús Balvuena Villegas
+                y William Andres Garcia Meza.
+            </p>
+
+            <p style="text-align: justify;">
+                Somos estudiantes de ingeniería electrónica de la
+                Universidad Del Norte ubicada en Barranquilla-Colombia.
+                Diseñamos esta aplicación para aquellas personas que cuenten
+                con uno o varios taxis. Esta cuenta con registro histórico
+                de los recorridos que realiza un determinado vehículo
+                durante un día, para que en cualquier momento se pueda
+                visualizar ingresando la fecha y hora inicial además de la
+                fecha y hora final. En el mapa se observará una polilínea la
+                cual es en realidad el recorrido que realizo un determinado
+                vehículo en un lapso de tiempo. De esta forma podrás tener
+                un total control de los movimientos y lugares recorridos de
+                los vehículos.
             </p>
 
         </div>
         <div class="w-100 container container-fluid"></div>
-        <div class="d-flex flex-wrap">
-            <div class="col-md-6 container container-fluid p-4">
+        
 
-                <h5 class="px-4 text-lg-center"> Diego Gómez Cerón</h5>
-                <br>
+    </div>
 
-                <p class="px-5" style="text-align: justify;">
-                    Magister en ingeniería Electrónica e Ingeniero Electrónico
-                    de la Universidad del Norte. Profesor Asistente e
-                    Investigador
-                    Asociado en las áreas de telemetría geo-referenciada y de
-                    automatización industrial. Miembro IEEE, Profesor Consejero
-                    del Capítulo Industry Application Society, miembro de la
-                    Sociedad de Robótica y Automatización, miembro del Grupo de
-                    Investigación en Robótica y Sistemas Inteligentes -GIRSI- de
-                    la Universidad del Norte. Gestor de Beneficios Tributarios
-                    para Proyectos en CTeI.
-                    <h5 class="px-5">Estudios:</h5>
-                    <div class="container container-fluid px-5 fs">
-                        <ul class="px-5">
-                            <li>Maestría en Ingeniería Electrónica - Universidad
-                                del Norte.</li>
-                            <li>Ingeniería Electrónica - Universidad del Norte.</li>
-                        </ul>
+    <section class="carousel">
+        <div class="carousel__container">
+            <div class="carousel-item">
+                <div class="carousel-item__details">
+                    <h6 class="text-lg-center fw-bold mt-3">
+                        Edgar Paez
+                    </h6>
+                    <p style="text-align: justify;" class="mx-3 fst-italic">
+                        "Me gusta mucho el tema del diseño, actualmente
+                        estoy
+                        enfocando en mejorar la temática del Front-End
+                        para
+                        darle a nuestro diseño una mejor apariencia."
+                    </p>
+                    <div class="contacto">                        <p>
+                            contacto:
+                        </p>
+                        <P class="mx-3" >
+                            Eapaez@uninorte.edu.co
+                            <br>
+                            +57 3195188515
+                        </P>
                     </div>
-                    <h5 class="px-5">Investigaciones finalizadas (últimos 5
-                        años)</h5>
-                    <div class="container container-fluid px-5">
-                        <ul class="px-5 fs-6 fst-italic">
-                            <li style="text-align: justify;">747-Formulación,
-                                Asistencia en Gestión de
-                                Presentación y Supervisión del Proyecto de
-                                Innovación -Diseño Concurrente, Automatización y
-                                Optimización de Operaciones y Equipos de Proceso
-                                en la Planta de Herbicidas, Fungicidas e
-                                Insecticidas - Investigador Principal - 2019</li>
-                            <li style="text-align: justify;">Regalías: Análisis
-                                de los Factores Clave de la
-                                Competitividad para la Construcción de un Nuevo
-                                Modelo de Territorio Inteligente en la Región
-                                Caribe y Santanderes ¿Diamante Caribe y
-                                Santanderes? - Coinvestigador - 2016</li>
-                        </ul>
-                    </div>
-                </p>
+                </div>
             </div>
-            <img class="col-md-6 d-flex flex-wrap container container-fluid p-5"
-                src="./imagenes/1531952876878.png" class="img-fluid" alt="...">
+            <div class="carousel-item">
+                <div class="carousel-item__details">
+                    <h6 class="text-lg-center fw-bold mt-3">
+                        Juan Menco
+                    </h6>
+                    <p style="text-align: justify;" class="mx-3 fst-italic">
+                        "Cada día se puede aprender algo nuevo, y mas
+                        cuando
+                        se trata de un tema tan importante como lo son
+                        las
+                        creaciones de App’s que hoy en día están
+                        revolucionando el mercado de la tecnología."
+                    </p>
+                    <div class="contacto">
+                        <p>
+                            contacto:
+                        </p>
+                        <P class="mx-3">
+                            jcmenco@uninorte.edu.co
+                            <br>
+                            +57 3158651364
+                        </P>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-item__details">
+                    <h6 class="text-lg-center fw-bold mt-3">
+                        Kevin Balvuena
+                    </h6>
+                    <p style="text-align: justify;" class="mx-3 fst-italic">
+                        "El confinamiento nos ha enseñado que el trabajo
+                        independiente es esencial a la hora de realizar
+                        tus
+                        logros, aunque el trabajo grupal siempre será
+                        importante también para sacar adelante los
+                        proyectos.”
+                    </p>
+                    <div class="contacto">
+                        <p>
+                            contacto:
+                        </p>
+                        <P class="mx-3">
+                            kbalvuena@uninorte.edu.co
+                            <br>
+                            +57 3042078425
+                        </P>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="carousel-item__details">
+                    <h6 class="text-lg-center fw-bold mt-3">
+                        William Garcia
+                    </h6>
+                    <p style="text-align: justify;" class="mx-3 fst-italic">
+                        " Ha sido un desafío realizar este proyecto por
+                        temas
+                        de la pandemia, pero se logró perfeccionar la
+                        aplicación para que los usuarios tengan un fácil
+                        acceso a ella."
+                    </p>
+                    <div class=" contacto">
+                        <p>
+                            Contacto:
+                        </p>
+                        <P class="mx-3">
+                            wagarcia@uninorte.edu.co
+                            <br>
+                            +57 3004986292
+                        </P>
+                    </div>
+                </div>
+            </div>
         </div>
+    </section>
+</body>
 
-        <div class="w-100 container container-fluid fondo2"> <br></div>
-
-        <div class="container container-fluid">
-            <h5 class="pt-2 text-lg-center fw-bold"> Estudiantes involucrados en
-                el
-                proyecto
-            </h5>
-            <div class="mt-3 mx-5">
-                <p class="" style="text-align: justify;">
-
-                    Nuestro grupo está conformado Edgar Alfonso Páez Barros,
-                    Juan Camilo Menco Serrano, Kevin De Jesús Balvuena Villegas
-                    y William Andres Garcia Meza.
-                </p>
-
-                <p style="text-align: justify;">
-                    Somos estudiantes de ingeniería electrónica de la
-                    Universidad Del Norte ubicada en Barranquilla-Colombia.
-                    Diseñamos esta aplicación para aquellas personas que cuenten
-                    con uno o varios taxis. Esta cuenta con registro histórico
-                    de los recorridos que realiza un determinado vehículo
-                    durante un día, para que en cualquier momento se pueda
-                    visualizar ingresando la fecha y hora inicial además de la
-                    fecha y hora final. En el mapa se observará una polilínea la
-                    cual es en realidad el recorrido que realizo un determinado
-                    vehículo en un lapso de tiempo. De esta forma podrás tener
-                    un total control de los movimientos y lugares recorridos de
-                    los vehículos.
-                </p>
-                <div class="row">
-                    <div class="col-lg-3 mx-0 mt-1">
-                        <div class="mx-1 color-conten">
-                            <h5 class="text-lg-center fw-bold">
-                                Edgar Paez
-                            </h5>
-                            <p style="text-align: justify;" class="mx-3
-                                fst-italic">
-                                "Me gusta mucho el tema del diseño, actualmente
-                                estoy
-                                enfocando en mejorar la temática del Front-End
-                                para
-                                darte a nuestro diseño una mejor apariencia."
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mx-0 mt-1">
-                        <div class="mx-1 color-conten">
-                            <h5 class="text-lg-center fw-bold">
-                                Juan Menco
-                            </h5>
-                            <p style="text-align: justify;" class="mx-3
-                                fst-italic">
-                                "Cada día se puede aprender algo nuevo, y mas
-                                cuando
-                                se trata de un tema tan importante como lo son
-                                las
-                                creaciones de App’s que hoy en día están
-                                revolucionando el mercado de la tecnología."
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mx-0 mt-1">
-                        <div class="mx-1 color-conten">
-                            <h5 class="text-lg-center fw-bold">
-                                Kevin Balvuena
-                            </h5>
-                            <p style="text-align: justify;" class="mx-3
-                                fst-italic">
-                                "El confinamiento nos ha enseñado que el trabajo
-                                independiente es esencial a la hora de realizar
-                                tus
-                                logros, aunque el trabajo grupal siempre será
-                                importante también para sacar adelante los
-                                proyectos.”
-                            </p>
-                            <p>
-
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 mx-0 mt-1">
-                        <div class="mx-1 color-conten">
-                            <h5 class="text-lg-center fw-bold">
-                                William Garcia
-                            </h5>
-                            <p style="text-align: justify;" class="mx-3
-                                fst-italic">
-                                " Ha sido un desafío realizar este proyecto por
-                                temas
-                                de la pandemia, pero se logró perfeccionar la
-                                aplicación para que los usuarios tengan un fácil
-                                acceso a ella."
-                            </p>
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-            <div class="w-100 container container-fluid"></div>
-            <div class="container container-fluid">
-                <h5 class="pt-2 text-lg-start fw-bold">
-                    Contactos:
-                </h5>
-                <div class="mx-5">
-                   <div>
-                    <p>
-                        Edgar Paez:
-                    </p>
-                    <P class="mx-5">
-                        Eapaez@uninorte.edu.co
-                        <br>
-                        +57 3195188515
-                    </P>
-                </div>
-                <div>
-                     <p>
-                        Juan Menco:
-                    </p>
-                    <P class="mx-5">
-                        jcmenco@uninorte.edu.co
-                        <br>
-                        +57 3158651364
-                    </P>
-                </div>
-                   <div>
-                       <p>
-                        Kevin Balvuena:
-                    </p>
-                    <P class="mx-5">
-                        kbalvuena@uninorte.edu.co
-                        <br>
-                        +57 3042078425
-                    </P> 
-                   </div>
-                   <div>
-                       <p>
-                        William Garcia:
-                    </p>
-                    <P class="mx-5">
-                        wagarcia@uninorte.edu.co
-                        <br>
-                        +57 3004986292
-                    </P>
-                   </div> 
-                </div>
-                
-                    
-
-                </div>
-
-            </div>
+<ul class="nav boder border-dark fondo2 m-5">
+    <br>
+</ul>
 
 
-
-
-        </div>
-
-    </body>
-
-    <ul class="nav boder border-dark fondo2">
-        <br>
-    </ul>
 
 </html>

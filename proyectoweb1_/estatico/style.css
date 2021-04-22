@@ -5,8 +5,29 @@
     background-color: #f1f3f8;
 }
 .fondo2{
-    background-color: #150e56 ;
+    background: linear-gradient( rgb(17, 17, 17) 10%, rgba(2, 11, 14, 0.685) 100%);
 }
+.grosor{
+    height: 3cm;
+    width: 100%;
+    
+}
+
 .color-conten{
     background-color: #d0e8f2;
+}
+.contacto{
+    position:absolute;
+    bottom:5px;
+    right:10px;
+}
+
+.centrar{
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+} 
+.fijar{
+    position: fixed;
+    top: 0px;
 }
