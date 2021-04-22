@@ -44,4 +44,9 @@
 .bajar-map{
     margin-top: 5cm;
 }
+.footer{
+    background: linear-gradient( rgb(17, 17, 17) 10%, rgba(2, 11, 14, 0.685) 100%);
+    height: 10rem;
+    margin-top: 0.5cm;
 
+}
