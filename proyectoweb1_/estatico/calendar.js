@@ -83,6 +83,7 @@ console.log(local)
 // Establece que el máximo valor por defecto de los calendarios es el día que sea realiza la consulta
 document.getElementById("calendario1").setAttribute("max", local)
 document.getElementById("calendario2").setAttribute("max", local)
+document.getElementById("calendario2").value = local
 
 /*
 * Esta función restringe los posibles datos que el usuario puede ingresar
@@ -230,8 +231,8 @@ async function mostrarRecorrido(fetchParam,taxiNo,k){
 
 }
 
-var fullscreenMenu = L.control.dialog({size: [300,370], anchor: [0,-309], position: "topright"});
-var fsMenu1 = "<h4>En pantalla completa también puedes seleccionar qué quieres ver</h4>";
+var fullscreenMenu = L.control.dialog({size: [380,290], anchor: [0,-390], position: "topright"});
+var fsMenu1 = "<h5>Aquí también puedes seleccionar qué quieres ver</h5>";
 //var dialogScript2 = "";
 var fsMenu2 = '<form name="formulario"><div class="row mt-3"><div class="d-flex flex-wrap"><div class="col-md-12 px-0 d-flex"><h5 class="mt-1">Desde: </h5>';
 var fsMenu3 = '<input type="datetime-local" class="form-control" id="calendario1" name="calendario1" onchange="verificar()"></div>';
@@ -241,7 +242,7 @@ var fsMenu6 = '<input type="radio" id="taxi1" name="taxis" value="taxi1"><label 
 var fsMenu7 = '<label for="taxi2">Taxi 2: YLK650</label><br><input type="radio" id="ambos" name="taxis" value="ambos"><label for="ambos">Ambos</label><br>';
 var fsMenu8 = '<input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block" disabled="on">';
 var fsMenu9 = '</div></div></form>';
-var contenidoMenu = [fsMenu2+fsMenu3+fsMenu4+fsMenu5+fsMenu6+fsMenu7+fsMenu8+fsMenu9];
+var contenidoMenu = fsMenu2+fsMenu3+fsMenu4+fsMenu5+fsMenu6+fsMenu7+fsMenu8+fsMenu9;
 
 map.on('fullscreenchange', function () {
     if (map.isFullscreen()) {
@@ -249,12 +250,14 @@ map.on('fullscreenchange', function () {
 	var x = document.getElementsByName("taxis");
 	x[2].checked = true;
 	fullscreenMenu.setContent(fsMenu1+contenidoMenu).addTo(map)
+	fullscreenMenu.hideClose()
+	fullscreenMenu.hideResize()
 	document.getElementById("calendario1").setAttribute("max", local);
 	document.getElementById("calendario2").setAttribute("max", local);
 	verificar();
     } else {
         //console.log('exited fullscreen');
-	fullscreenMenu.close()
+	fullscreenMenu.destroy()
     }
 });
 

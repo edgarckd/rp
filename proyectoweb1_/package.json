@@ -6,6 +6,7 @@
     "leaflet-dialog": "^1.0.5",
     "leaflet-extra-markers": "^1.2.1",
     "leaflet-polylinedecorator": "^1.6.0",
-    "leaflet.bezier": "^0.1.1"
+    "leaflet.bezier": "^0.1.1",
+    "pg": "^8.6.0"
   }
 }

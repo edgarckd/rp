@@ -89,3 +89,4 @@ function readFile(){
 		console.log("hubo un error");
 	}
 }setInterval(readFile,1500);
+

@@ -64,31 +64,6 @@ app.get("/ubicartaxi/:id", (req,res) => {
 // sniffer udp
 const dgram = require('dgram');
 
-// taxi 1
-const datos = dgram.createSocket('udp4');
-datos.on('error', (err) => {
-	console.log(`server error:\n${err.stack}`);
-	datos.close();
-});
-datos.on('message', (msg, rinfo) =>  {
-	var msg1 = msg.toString()
-	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg1, err => {
-	if (err) throw err;
-	})
-	console.log(msg1)
-	data = msg1.split("/")
-	lat = ("\'"+data[0]+"\'")
-	lon = ("\'"+data[1]+"\'")
-	tim = ("\'"+data[2]+"\'")
-	console.log("taxi1: "+lat)
-	console.log("insertando datos ")
-	client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
-		console.log(err,res);
-	});
-});
-datos.bind(37777);
-// fin: taxi 1
-
 // taxi 2
 var lat2;
 var lon2;
@@ -118,3 +93,29 @@ datos2.on('message', (msg, rinfo) =>  {
 });
 datos2.bind(37776);
 // fin: taxi 2
+
+
+// taxi 1
+const datos = dgram.createSocket('udp4');
+datos.on('error', (err) => {
+	console.log(`server error:\n${err.stack}`);
+	datos.close();
+});
+datos.on('message', (msg, rinfo) =>  {
+	var msg1 = msg.toString()
+	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg1, err => {
+	if (err) throw err;
+	})
+	console.log(msg1)
+	data = msg1.split("/")
+	lat = ("\'"+data[0]+"\'")
+	lon = ("\'"+data[1]+"\'")
+	tim = ("\'"+data[2]+"\'")
+	console.log("taxi1: "+lat)
+	console.log("insertando datos ")
+	client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
+		console.log(err,res);
+	});
+});
+datos.bind(37777);
+// fin: taxi 1
