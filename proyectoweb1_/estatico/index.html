@@ -70,45 +70,42 @@
     </style>
 
     <body class="body">
-        <ul class="nav boder border-dark fondo2">
-            <br>
-        </ul>
-    
+       
         <!-- Diseño encabezado logo y titulo-->
-        <header class="container-fluid mt-3">
+        <header class="container-fluid mt-1">
+            <!-- diseño barra de navegacion-->
+            <ul class="nav  fondo2 grosor centrar fijar flex ">
+                <div class="row">
     
-            <!-- el container hace que encabezado cubra la extension de la pantalla-->
-            <div class="row">
+                    <!-- crea una fila con columnas dentro-->
+                    <div class="col-lg-12 h-100 d-flex">
     
-                <!-- crea una fila con columnas dentro-->
-                <div class="col-lg-12 h-100 d-flex">
-                    <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
-                    <div class="mx-auto d-flex">
-                        <img src="/estatico/imagenes/1617579128832.png"
-                            style="width:70px; height: 70px;" alt="Uffs, tuvimos
-                            un problema">
-                        <h1 class="display-3 text-center">
-                            TIO TAXI
-                        </h1>
+                        <!-- col-lg-12 me indica que es una columna, d-flex las vuelve flexible para que un contenido salga al lado del otro -->
+                        <div class="mx-auto d-flex ubic">
+                            <img src="./imagenes/1617579128832.png" style="width:70px; height: 70px;" alt="Uffs, tuvimos
+                                    un problema">
+                            <h1 class="display-3 text-center text-white">TIO TAXI</h1>
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- diseño barra de navegacion-->
-            <ul class="nav mt-3 fondo2">
-                <li class="nav-item">
-                    <a class="nav-link text-white fs-5"href="#">Localizar</a>
-                </li>
-                <li class="nav-item"> <a class="nav-link text-white fs-5" href="/estatico/ubicar.html" target="_blank">¿Donde estuvo?</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-white fs-5"href="/estatico/quienes_somos.html" target="_blank">Quienes somos</a>
-                </li>
+                <div class="nav  ubic-2">
+                    <li class="nav-item">
+                        <a class="nav-link fs-6 text-white" href="./index.html">Localizar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-6" href="./ubicar.html">¿Donde
+                            estuvo?</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white fs-6" href="#">Quienes somos</a>
+                    </li>
+                </div>
+    
             </ul>
-
+    
         </header>
 
-        <main>
+        <main class="bajar-map">
 
             <!-- correción de mapa-->
             <div class="px-5 border fondo container-fluid mt-3">
@@ -125,7 +122,7 @@
     
     </body>
 
-    <ul class="nav boder border-dark fondo2">
+    <ul class="nav boder border-dark fondo2 bajar">
         <br>
     </ul>
 
