@@ -42,8 +42,9 @@ var marker22 = L.marker([0,0],{icon: myIcon}).bindPopup(popupFinal,{autoClose: f
 var polyline2 = L.polyline([], {color: 'blue', opacity: 0.8, weight: 2, lineJoin: 'round', smoothFactor: 0}).addTo(map);
 polyline2.arrowheads({yawn: 40, fill: true, size: "10px", frequency: '60px'});
 
+var circulo = L.circle([0,0], {radius: 0});
 // Grupo de marcadores
-var markersGroup = new L.FeatureGroup([marker11,marker21,marker12,marker22]);
+var markersGroup = new L.FeatureGroup([marker11,marker21,marker12,marker22,circulo]);
 
 /*
 * Esta función convierte el formato de fecha y hora dado por la función Date() a uno tal que pueda ser
@@ -83,6 +84,7 @@ console.log(local)
 // Establece que el máximo valor por defecto de los calendarios es el día que sea realiza la consulta
 document.getElementById("calendario1").setAttribute("max", local)
 document.getElementById("calendario2").setAttribute("max", local)
+document.getElementById("calendario1").value = "2021-01-01T00:00"
 document.getElementById("calendario2").value = local
 
 /*
@@ -96,13 +98,6 @@ function verificar(){
 
 	var cal1 = document.getElementById("calendario1").value;
 	var cal2 = document.getElementById("calendario2").value;
-
-	// 1.
-	if (cal1 == [] || cal2 == []) {
-		document.getElementById("btn1").setAttribute("disabled", "on")
-	} else {
-		document.getElementById("btn1").removeAttribute("disabled")
-	}
 
 	// 2.
 	if (cal1 != []){
@@ -128,62 +123,137 @@ markersGroup.removeLayer(marker22);
 */
 var x = document.getElementsByName("taxis");
 x[2].checked = true;
-var i=1;
-async function obtenerdatos(){
-
-	map.setView([10.980074,-74.804948],12);
+var y = document.getElementById("parte2_historicos");
+var puntoMapa
+var radio
+map.on('click', function(e){
+	markersGroup.removeLayer(circulo);
+	if (y.checked == true){
+	puntoMapa = e.latlng;
+	//alert(puntoMapa)
+	console.log(puntoMapa)
+	radio = document.getElementById("radio-area").value
+	//map.setView([10.982088,-74.783445],12);
 	polyline.setLatLngs([]);
 	polyline2.setLatLngs([]);
 	var cal1 = document.getElementById("calendario1").value;
 	var cal2 = document.getElementById("calendario2").value;
+	mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1,puntoMapa,radio,true);
+	circulo.setLatLng(puntoMapa);
+	circulo.setRadius(radio*1000);
+	circulo.addTo(map);
+	}
+});
 
-	dialog.destroy()
+function selectPunto(){
+
+	if (y.checked == true){
 	markersGroup.removeLayer(marker11);
 	markersGroup.removeLayer(marker21);
 	markersGroup.removeLayer(marker12);
 	markersGroup.removeLayer(marker22);
-
-	if (x[0].checked == true) {
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1);
-	} else if (x[1].checked == true) {
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2);
-	} else {
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
-		mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
-	}
+	polyline.setLatLngs([]);
+	polyline2.setLatLngs([]);
+	document.getElementById("radio-area").removeAttribute("disabled")
+	}else{document.getElementById("radio-area").setAttribute("disabled","on");}
 }
 
-async function mostrarRecorrido(fetchParam,taxiNo,k){
+async function obtenerdatos(){
+	if (y.checked == false) {
+		map.setView([10.982088,-74.783445],12);
+		polyline.setLatLngs([]);
+		polyline2.setLatLngs([]);
+		var cal1 = document.getElementById("calendario1").value;
+		var cal2 = document.getElementById("calendario2").value;
+
+		dialog.destroy();
+		markersGroup.removeLayer(marker11);
+		markersGroup.removeLayer(marker21);
+		markersGroup.removeLayer(marker12);
+		markersGroup.removeLayer(marker22);
+
+		if (x[0].checked == true) {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1);
+		} else if (x[1].checked == true) {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,1);
+		} else {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
+		}
+	}
+
+
+	console.log(y.checked);
+
+}
+
+async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 
 	response = await fetch(fetchParam);
+	data = await response.json();
+	const rows = data;
+	var latlon = Array(rows.length);
+	var puntos = [];
+	var tiempo = [];
+	var d;
+	var inicio;
+	var final;
+	var rTierra = 6378.1;
+	var deltaLat;
+	var deltaLng;
+	var a;
+	var c;
+
+	for (i=0; i < rows.length; i++){
+		latlon[i] = L.latLng([rows[i].latitud, rows[i].longitud])
+		if (m) {
+			deltaLat = (rows[i].latitud-centro.lat)*(Math.PI/180)
+			deltaLng = (rows[i].longitud-centro.lng)*(Math.PI/180);
+			a = Math.pow(Math.sin(deltaLat/2),2)+Math.cos(rows[i].latitud*Math.PI/180)*Math.cos(centro.lat*Math.PI/180)*Math.pow(Math.sin(deltaLng/2),2);
+			c = 2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a));
+			d = rTierra*c;
+			if (d <= radio) {
+				puntos.push(latlon[i]);
+				tiempo.push(rows[i].time);
+			}
+		}
+	}
+
+	console.log("distancia calculada "+d)
 
 	if (taxiNo==1) {
 		var poly = polyline;
 		var popupTaxi = "Taxi 1: AMV569";
 
-		data = await response.json();
-		const rows = data;
-		var latlon = Array(rows.length);
-
-		for (i=0; i < rows.length; i++){
-			latlon[i] = L.latLng([rows[i].latitud, rows[i].longitud])
-		}
-
 		if (latlon.length != 0){
-			longitud1 = rows[0].longitud;
-			latitud1 = rows[0].latitud;
-			time1 = rows[0].time;
-			longitud2 = rows[latlon.length-1].longitud;
-			latitud2 = rows[latlon.length-1].latitud;
-			time2 = rows[latlon.length-1].time;
+			if (m) {
+				longitud1 = puntos[0].longitud;
+				latitud1 = puntos[0].latitud;
+				time1 = tiempo[0];
+				longitud2 = puntos[puntos.length-1].longitud;
+				latitud2 = puntos[puntos.length-1].latitud;
+				time2 = tiempo[tiempo.length-1];
+				inicio = puntos[0];
+				final = puntos[puntos.length-1];
+				poly.setLatLngs([puntos]);
+			} else {
+				longitud1 = rows[0].longitud;
+				latitud1 = rows[0].latitud;
+				time1 = rows[0].time;
+				longitud2 = rows[latlon.length-1].longitud;
+				latitud2 = rows[latlon.length-1].latitud;
+				time2 = rows[latlon.length-1].time;
+				inicio = latlon[0];
+				final = latlon[latlon.length-1];
+				poly.setLatLngs([latlon]);
+			}
 			markersGroup.addTo(map);
 			markersGroup.addLayer(marker11);
 			markersGroup.addLayer(marker21);
-			marker11.setLatLng(latlon[0]);
+			marker11.setLatLng(inicio);
 			marker11.setPopupContent(popupTaxi+popupInicial+"Longitud: "+longitud1+"<br>Latitud: "+latitud1+"<br>Tiempo: "+time1);
-			marker21.setLatLng(latlon[latlon.length-1]);
+			marker21.setLatLng(final);
 			marker21.setPopupContent(popupTaxi+popupFinal+"Longitud: "+longitud2+"<br>Latitud: "+latitud2+"<br>Tiempo: "+time2);
-			poly.setLatLngs([latlon]);
 		} else {
 			markersGroup.removeLayer(marker11);
 			markersGroup.removeLayer(marker21);
@@ -196,29 +266,35 @@ async function mostrarRecorrido(fetchParam,taxiNo,k){
 		var poly = polyline2;
 		var popupTaxi = "Taxi 2: YLK650";
 
-		data = await response.json();
-		const rows = data;
-		var latlon = Array(rows.length);
-
-		for (i=0; i < rows.length; i++){
-			latlon[i] = L.latLng([rows[i].latitud, rows[i].longitud])
-		}
-
 		if (latlon.length != 0){
-			longitud1 = rows[0].longitud;
-			latitud1 = rows[0].latitud;
-			time1 = rows[0].time;
-			longitud2 = rows[latlon.length-1].longitud;
-			latitud2 = rows[latlon.length-1].latitud;
-			time2 = rows[latlon.length-1].time;
+			if (m) {
+				longitud1 = puntos[0].longitud;
+				latitud1 = puntos[0].latitud;
+				time1 = tiempo[0];
+				longitud2 = puntos[puntos.length-1].longitud;
+				latitud2 = puntos[puntos.length-1].latitud;
+				time2 = tiempo[tiempo.length-1];
+				inicio = puntos[0];
+				final = puntos[puntos.length-1];
+				poly.setLatLngs([puntos]);
+			} else {
+				longitud1 = rows[0].longitud;
+				latitud1 = rows[0].latitud;
+				time1 = rows[0].time;
+				longitud2 = rows[latlon.length-1].longitud;
+				latitud2 = rows[latlon.length-1].latitud;
+				time2 = rows[latlon.length-1].time;
+				inicio = latlon[0];
+				final = latlon[latlon.length-1];
+				poly.setLatLngs([latlon]);
+			}
 			markersGroup.addTo(map);
 			markersGroup.addLayer(marker12);
 			markersGroup.addLayer(marker22);
-			marker12.setLatLng(latlon[0]);
+			marker12.setLatLng(inicio);
 			marker12.setPopupContent(popupTaxi+popupInicial+"Longitud: "+longitud1+"<br>Latitud: "+latitud1+"<br>Tiempo: "+time1);
-			marker22.setLatLng(latlon[latlon.length-1]);
+			marker22.setLatLng(final);
 			marker22.setPopupContent(popupTaxi+popupFinal+"Longitud: "+longitud2+"<br>Latitud: "+latitud2+"<br>Tiempo: "+time2);
-			poly.setLatLngs([latlon]);
 		} else {
 			markersGroup.removeLayer(marker11);
 			markersGroup.removeLayer(marker21);

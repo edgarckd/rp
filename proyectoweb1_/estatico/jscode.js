@@ -57,35 +57,28 @@ function readFile(){
 			data1 =split[0]
 			data2 =split[1]
 			data3 =split[2]
+			data4 =split[3]
 
 			if (data1 != null && data2 != null && data3 != null) {
-				var latlng1 = L.latLng(data1,data2);
-				taxi1.push(latlng1);
-				polyline.setLatLngs([taxi1])
-				marker1.setLatLng(latlng1).setPopupContent(popup1+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
-				//map.setView(latlng1)
+				if (data4 == "1") {
+					var latlng1 = L.latLng(data1,data2);
+					taxi1.push(latlng1);
+					polyline.setLatLngs([taxi1])
+					marker1.setLatLng(latlng1).setPopupContent(popup1+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
+					//map.setView(latlng1)
+				} else if (data4 == "2") {
+					var latlng2 = L.latLng(data1,data2);
+					taxi2.push(latlng2);
+					polyline2.setLatLngs([taxi2]);
+					marker2.setLatLng(latlng2).setPopupContent(popup2+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
+					//map.setView([data1,data2])
+				}
+
 			}
 
-		});
-
-		jQuery.get('/estatico/result2.txt', function(data2){
-
-			var split2 = data2.split("/")
-
-			data1 =split2[0]
-			data2 =split2[1]
-			data3 =split2[2]
-
-			if (data1 != null && data2 != null && data3 != null) {
-				var latlng2 = L.latLng(data1,data2);
-				taxi2.push(latlng2);
-				polyline2.setLatLngs([taxi2]);
-				marker2.setLatLng(latlng2).setPopupContent(popup2+"Longitud: "+data1+"<br> Latitud: "+data2+"<br> Tiempo: "+data3);
-				//map.setView([data1,data2])
-			}
 		});
 
 	} catch(err){
 		console.log("hubo un error");
 	}
-}setInterval(readFile,1500);
+}setInterval(readFile,3000);
