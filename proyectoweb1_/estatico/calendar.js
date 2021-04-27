@@ -44,7 +44,8 @@ polyline2.arrowheads({yawn: 40, fill: true, size: "10px", frequency: '60px'});
 
 var circulo = L.circle([0,0], {radius: 0});
 // Grupo de marcadores
-var markersGroup = new L.FeatureGroup([marker11,marker21,marker12,marker22,circulo]);
+var markersGroup = new L.FeatureGroup([marker11,marker21,marker12,marker22]);
+var polygonGroup = new L.FeatureGroup([circulo]);
 
 /*
 * Esta función convierte el formato de fecha y hora dado por la función Date() a uno tal que pueda ser
@@ -114,6 +115,7 @@ markersGroup.removeLayer(marker11);
 markersGroup.removeLayer(marker21);
 markersGroup.removeLayer(marker12);
 markersGroup.removeLayer(marker22);
+polygonGroup.removeLayer(circulo);
 
 /*
 * Esta función recupera los datos de la base de datos de acuerdo a lo seleccionado en el formulario
@@ -127,40 +129,9 @@ var y = document.getElementById("parte2_historicos");
 var puntoMapa
 var radio
 map.on('click', function(e){
-	markersGroup.removeLayer(circulo);
-	if (y.checked == true){
-	puntoMapa = e.latlng;
-	//alert(puntoMapa)
-	console.log(puntoMapa)
-	radio = document.getElementById("radio-area").value
-	//map.setView([10.982088,-74.783445],12);
-	polyline.setLatLngs([]);
-	polyline2.setLatLngs([]);
-	var cal1 = document.getElementById("calendario1").value;
-	var cal2 = document.getElementById("calendario2").value;
-	mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1,puntoMapa,radio,true);
-	circulo.setLatLng(puntoMapa);
-	circulo.setRadius(radio*1000);
-	circulo.addTo(map);
-	}
-});
-
-function selectPunto(){
 
 	if (y.checked == true){
-	markersGroup.removeLayer(marker11);
-	markersGroup.removeLayer(marker21);
-	markersGroup.removeLayer(marker12);
-	markersGroup.removeLayer(marker22);
-	polyline.setLatLngs([]);
-	polyline2.setLatLngs([]);
-	document.getElementById("radio-area").removeAttribute("disabled")
-	}else{document.getElementById("radio-area").setAttribute("disabled","on");}
-}
 
-async function obtenerdatos(){
-	if (y.checked == false) {
-		map.setView([10.982088,-74.783445],12);
 		polyline.setLatLngs([]);
 		polyline2.setLatLngs([]);
 		var cal1 = document.getElementById("calendario1").value;
@@ -171,6 +142,61 @@ async function obtenerdatos(){
 		markersGroup.removeLayer(marker21);
 		markersGroup.removeLayer(marker12);
 		markersGroup.removeLayer(marker22);
+		polygonGroup.removeLayer(circulo);
+
+		puntoMapa = e.latlng;
+
+		console.log(puntoMapa)
+		radio = document.getElementById("radio-area").value
+
+		circulo.setLatLng(puntoMapa);
+		circulo.setRadius(radio*1000);
+		polygonGroup.addTo(map);
+		polygonGroup.addLayer(circulo);
+
+		document.getElementById("centro-area-lng").value = puntoMapa.lng.toString();
+		document.getElementById("centro-area-lat").value = puntoMapa.lat.toString();
+
+		if (x[0].checked == true) {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1,puntoMapa,radio,true);
+		} else if (x[1].checked == true) {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,1,puntoMapa,radio,true);
+		} else {
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0,puntoMapa,radio,true);
+			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0,puntoMapa,radio,true);
+		}
+
+	}
+});
+
+function selectPunto(){
+	if (y.checked == true){
+	markersGroup.removeLayer(marker11);
+	markersGroup.removeLayer(marker21);
+	markersGroup.removeLayer(marker12);
+	markersGroup.removeLayer(marker22);
+	polygonGroup.removeLayer(circulo);
+	polyline.setLatLngs([]);
+	polyline2.setLatLngs([]);
+	document.getElementById("radio-area").removeAttribute("disabled")
+	}else{document.getElementById("radio-area").setAttribute("disabled","on");}
+}
+
+async function obtenerdatos(){
+
+	polyline.setLatLngs([]);
+	polyline2.setLatLngs([]);
+	var cal1 = document.getElementById("calendario1").value;
+	var cal2 = document.getElementById("calendario2").value;
+
+	dialog.destroy();
+	markersGroup.removeLayer(marker11);
+	markersGroup.removeLayer(marker21);
+	markersGroup.removeLayer(marker12);
+	markersGroup.removeLayer(marker22);
+	polygonGroup.removeLayer(circulo);
+	if (y.checked == false) {
+		map.setView([10.982088,-74.783445],12);
 
 		if (x[0].checked == true) {
 			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1);
@@ -181,7 +207,6 @@ async function obtenerdatos(){
 			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
 		}
 	}
-
 
 	console.log(y.checked);
 
@@ -227,11 +252,11 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 
 		if (latlon.length != 0){
 			if (m) {
-				longitud1 = puntos[0].longitud;
-				latitud1 = puntos[0].latitud;
+				longitud1 = puntos[0].lng;
+				latitud1 = puntos[0].lat;
 				time1 = tiempo[0];
-				longitud2 = puntos[puntos.length-1].longitud;
-				latitud2 = puntos[puntos.length-1].latitud;
+				longitud2 = puntos[puntos.length-1].lng;
+				latitud2 = puntos[puntos.length-1].lat;
 				time2 = tiempo[tiempo.length-1];
 				inicio = puntos[0];
 				final = puntos[puntos.length-1];
@@ -306,34 +331,3 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 	}
 
 }
-
-var fullscreenMenu = L.control.dialog({size: [380,290], anchor: [0,-390], position: "topright"});
-var fsMenu1 = "<h5>Aquí también puedes seleccionar qué quieres ver</h5>";
-//var dialogScript2 = "";
-var fsMenu2 = '<form name="formulario"><div class="row mt-3"><div class="d-flex flex-wrap"><div class="col-md-12 px-0 d-flex"><h5 class="mt-1">Desde: </h5>';
-var fsMenu3 = '<input type="datetime-local" class="form-control" id="calendario1" name="calendario1" onchange="verificar()"></div>';
-var fsMenu4 = '<div class="col-md-12 px-0 d-flex"><h5 class="mt-1">Hasta::</h5><input type="datetime-local" class="form-control" id="calendario2" name="calendario1" onchange="verificar()">';
-var fsMenu5 = '</div></div><div class="w-100"></div><div class="col-12 mt-3">';
-var fsMenu6 = '<input type="radio" id="taxi1" name="taxis" value="taxi1"><label for="taxi1">Taxi 1: AMV569</label><br><input type="radio" id="taxi2" name="taxis" value="taxi2">';
-var fsMenu7 = '<label for="taxi2">Taxi 2: YLK650</label><br><input type="radio" id="ambos" name="taxis" value="ambos"><label for="ambos">Ambos</label><br>';
-var fsMenu8 = '<input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block" disabled="on">';
-var fsMenu9 = '</div></div></form>';
-var contenidoMenu = fsMenu2+fsMenu3+fsMenu4+fsMenu5+fsMenu6+fsMenu7+fsMenu8+fsMenu9;
-
-map.on('fullscreenchange', function () {
-    if (map.isFullscreen()) {
-        console.log('entered fullscreen');
-	var x = document.getElementsByName("taxis");
-	x[2].checked = true;
-	fullscreenMenu.setContent(fsMenu1+contenidoMenu).addTo(map)
-	fullscreenMenu.hideClose()
-	fullscreenMenu.hideResize()
-	document.getElementById("calendario1").setAttribute("max", local);
-	document.getElementById("calendario2").setAttribute("max", local);
-	verificar();
-    } else {
-        //console.log('exited fullscreen');
-	fullscreenMenu.destroy()
-    }
-});
-
