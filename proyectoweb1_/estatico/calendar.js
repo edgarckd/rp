@@ -293,11 +293,11 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 
 		if (latlon.length != 0){
 			if (m) {
-				longitud1 = puntos[0].longitud;
-				latitud1 = puntos[0].latitud;
+				longitud1 = puntos[0].lng;
+				latitud1 = puntos[0].lat;
 				time1 = tiempo[0];
-				longitud2 = puntos[puntos.length-1].longitud;
-				latitud2 = puntos[puntos.length-1].latitud;
+				longitud2 = puntos[puntos.length-1].lng;
+				latitud2 = puntos[puntos.length-1].lat;
 				time2 = tiempo[tiempo.length-1];
 				inicio = puntos[0];
 				final = puntos[puntos.length-1];
