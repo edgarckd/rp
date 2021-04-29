@@ -4,6 +4,7 @@ var data
 var lat
 var lon
 var tim
+var taxiN
 var path = require('path')
 
 // fs es para manipular archivos en general (en este caso un txt)
@@ -64,38 +65,7 @@ app.get("/ubicartaxi/:id", (req,res) => {
 // sniffer udp
 const dgram = require('dgram');
 
-// taxi 2
-var lat2;
-var lon2;
-var tim2;
-var data2;
-const datos2 = dgram.createSocket('udp4');
-datos2.on('error', (err) => {
-	console.log(`server error:\n${err.stack}`);
-	console.log("error en taxi2");
-	datos2.close();
-});
-datos2.on('message', (msg, rinfo) =>  {
-	var msg2 = msg.toString();
-	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result2.txt', msg2, err => {
-		if (err) throw err;
-	})
-	console.log(msg2);
-	data2 = msg2.split("/");
-	lat2 = ("\'"+data2[0]+"\'");
-	lon2 = ("\'"+data2[1]+"\'");
-	tim2 = ("\'"+data2[2]+"\'");
-	console.log("taxi2: "+lat2);
-	console.log("insertando datos2 ")
-	client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES ('+lat2+','+lon2+','+tim2+');', (err,res)=>{
-		console.log(err,res);
-	});
-});
-datos2.bind(37776);
-// fin: taxi 2
-
-
-// taxi 1
+// taxis data
 const datos = dgram.createSocket('udp4');
 datos.on('error', (err) => {
 	console.log(`server error:\n${err.stack}`);
@@ -111,11 +81,22 @@ datos.on('message', (msg, rinfo) =>  {
 	lat = ("\'"+data[0]+"\'")
 	lon = ("\'"+data[1]+"\'")
 	tim = ("\'"+data[2]+"\'")
-	console.log("taxi1: "+lat)
-	console.log("insertando datos ")
-	client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
-		console.log(err,res);
-	});
-});
+	taxiN = data[3];
+	lat1 = parseFloat(data[0]);
+	lon1 = parseFloat(data[1]);
+
+	if (taxiN == "1") {
+		console.log("taxi1: "+lat1)
+
+			client.query('INSERT INTO public.geodatos("latitud","longitud","time","puntos")VALUES ('+lat+','+lon+','+tim+',POINT('+lat1+','+lon1+'));', (err,res)=>{
+				console.log(err,res);
+			});
+	} else if (taxiN == "2") {
+		console.log("taxi1: "+lat)
+			client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
+				console.log(err,res);
+			});
+		}
+	}
+);
 datos.bind(37777);
-// fin: taxi 1

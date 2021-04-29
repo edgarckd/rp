@@ -62,14 +62,6 @@
         width: cover;
         height: 55vh;
     }
-
-    #tabla {
-        width: 100%;
-    }
-
-    td {
-        width: auto
-    }
 </style>
 
 <body class="body">
@@ -88,11 +80,11 @@
                     <a class="nav-link fs-6 text-white " href="./index.html">Localizar</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-6" href="./ubicar.html">¿Donde
+                    <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde
                         estuvo?</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-6" href="./quienes_somos.html">Quienes somos</a>
+                    <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">Quienes somos</a>
                 </li>
             </div>
 
@@ -100,7 +92,21 @@
 
     </header>
     <main class="bajar-map">
-
+	<div class="parte2">
+		<form>
+			<input type="checkbox" id="parte2_historicos" name="select" value="select" onclick="selectPunto()">
+			<label for="parte2_historicos">¿Seleccionar un punto en el mapa?</label>
+		</form>
+	</div>
+	<div class="parte2">
+		<label for="centro-area-lng">Longitud:</label>
+		<input type="text" id="centro-area-lng" name="centro-area" disabled>
+		<label for="centro-area-lat">Latitud:</label>
+		<input type="text" id="centro-area-lat" name="centro-area" disabled>
+		<label for="radio-area">>> radio:</label>
+		<input type="number" id="radio-area" name="radio-area" value="1" min="1" disabled>
+		<label for="radio-area">(km)</label>
+	</div>
         <!-- diseño del mapa-->
         <div class="px-5 border fondo container-fluid mt-3">
             <div id="map"> </div>
@@ -124,17 +130,12 @@
 
                 <div class="w-100"></div>
                 <div class="col-12 mt-3">
-                    <!--
-			    <input type="submit" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()" class="btn btn-secondary mx-auto d-block">
-			-->
-                    <select class="form-select form-select-bg-size:12px 12px; " aria-label="Default select example">
-                        <option selected>Seleccione el vehiculo a visualizar</option>
-                        <option id="taxi1" value="taxi1">Taxi 1</option>
-                        <option id="taxi2" value="taxi2">Taxi 2</option>
-                        <option id="ambos" value="ambos">Visualizar todos los vehiculos</option>
-                    </select>
-                    <input type="button" value="Buscar" name="btn1" id="btn1" onclick="obtenerdatos()"
-                        class="btn btn-secondary mx-auto d-block bajar" disabled="on">
+			<input type="radio" id="taxi1" name="taxis" value="taxi1" onclick="obtenerdatos()">
+			<label for="taxi1">Taxi 1: AMV569</label><br>
+			<input type="radio" id="taxi2" name="taxis" value="taxi2" onclick="obtenerdatos()">
+			<label for="taxi2">Taxi 2: YLK650</label><br>
+			<input type="radio" id="ambos" name="taxis" value="ambos" onclick="obtenerdatos()">
+			<label for="ambos">Ambos</label><br>
                 </div>
             </div>
         </form>
@@ -146,6 +147,7 @@
     </main>
 
 </body>
+
 <footer class="footer">
     <NAV>
         <P><A HREF="/credits.html">Credits</A> —
@@ -155,6 +157,5 @@
     </NAV>
     <P>Copyright © 2009 Gordon Freeman</P>
 </footer>
-
 
 </html>
