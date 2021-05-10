@@ -43,6 +43,7 @@ var polyline2 = L.polyline([], {color: 'blue', opacity: 0.8, weight: 2, lineJoin
 polyline2.arrowheads({yawn: 40, fill: true, size: "10px", frequency: '60px'});
 
 var circulo = L.circle([0,0], {radius: 0});
+
 // Grupo de marcadores
 var markersGroup = new L.FeatureGroup([marker11,marker21,marker12,marker22]);
 var polygonGroup = new L.FeatureGroup([circulo]);
@@ -124,62 +125,117 @@ polygonGroup.removeLayer(circulo);
 * Se incluyen los metodos para borrar marcadores y polilíneas
 */
 var x = document.getElementsByName("taxis");
+
+// Muestra ambos taxis por defecto
 x[2].checked = true;
+
+// Checkbox
 var y = document.getElementById("parte2_historicos");
+
+// Parámetros del área
 var puntoMapa
-var radio
-map.on('click', function(e){
+var radio = document.getElementById("radio-area");
+var slider = document.getElementById("radio_slider");
+var centroLng = document.getElementById("centro-area-lng");
+var centroLat = document.getElementById("centro-area-lat");
 
-	if (y.checked == true){
+function borrar() {
+    polyline.setLatLngs([]);
+    polyline2.setLatLngs([]);
+    dialog.destroy();
+    markersGroup.removeLayer(marker11);
+    markersGroup.removeLayer(marker21);
+    markersGroup.removeLayer(marker12);
+    markersGroup.removeLayer(marker22);
+    polygonGroup.removeLayer(circulo);
+}
 
-		polyline.setLatLngs([]);
-		polyline2.setLatLngs([]);
-		var cal1 = document.getElementById("calendario1").value;
-		var cal2 = document.getElementById("calendario2").value;
+function showData() {
 
-		dialog.destroy();
-		markersGroup.removeLayer(marker11);
-		markersGroup.removeLayer(marker21);
-		markersGroup.removeLayer(marker12);
-		markersGroup.removeLayer(marker22);
-		polygonGroup.removeLayer(circulo);
+    // Calendarios
+    var cal1 = document.getElementById("calendario1").value;
+    var cal2 = document.getElementById("calendario2").value;
 
-		puntoMapa = e.latlng;
+    // Muestra el círculo en el mapa
+    polygonGroup.addTo(map);
+    polygonGroup.addLayer(circulo);
 
-		console.log(puntoMapa)
-		radio = document.getElementById("radio-area").value
+    // Actualiza el radio conforme cambia el slider o el input
+    console.log("El radio es: " + radio.value)
+    circulo.setRadius(radio.value * 1000);
 
-		circulo.setLatLng(puntoMapa);
-		circulo.setRadius(radio*1000);
-		polygonGroup.addTo(map);
-		polygonGroup.addLayer(circulo);
+    if (x[0].checked == true) {
+        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
+    } else if (x[1].checked == true) {
+        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 1, puntoMapa, radio.value, true);
+    } else {
+        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 0, puntoMapa, radio.value, true);
+        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 0, puntoMapa, radio.value, true);
+    }
+}
 
-		document.getElementById("centro-area-lng").value = puntoMapa.lng.toString();
-		document.getElementById("centro-area-lat").value = puntoMapa.lat.toString();
+y.onclick = function areaMapa() {
 
-		if (x[0].checked == true) {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1,puntoMapa,radio,true);
-		} else if (x[1].checked == true) {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,1,puntoMapa,radio,true);
-		} else {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0,puntoMapa,radio,true);
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0,puntoMapa,radio,true);
-		}
+    // Borra todos los layers
+    borrar();
 
-	}
-});
+    // Limpia el valor del radio
+    radio.value = 0;
+    slider.value = 0;
 
-function selectPunto(){
-	if (y.checked == true){
-	markersGroup.removeLayer(marker11);
-	markersGroup.removeLayer(marker21);
-	markersGroup.removeLayer(marker12);
-	markersGroup.removeLayer(marker22);
-	polygonGroup.removeLayer(circulo);
-	polyline.setLatLngs([]);
-	polyline2.setLatLngs([]);
-	document.getElementById("radio-area").removeAttribute("disabled")
-	}else{document.getElementById("radio-area").setAttribute("disabled","on");}
+    if (y.checked == true) {
+
+        // Activa el slider y los input
+        radio.removeAttribute("disabled");
+        slider.removeAttribute("disabled");
+
+        // Vincula el slider con el input number del radio y viceversa
+        slider.oninput = function () {
+            radio.value = slider.value;
+
+	    borrar();
+           // Mostrar el círculo y los datos
+            showData();
+        }
+        radio.oninput = function () {
+            slider.value = radio.value;
+
+	    borrar()
+            // Mostrar el círculo y los datos
+            showData();
+        }
+
+        // Se ejecuta al hacer click en el mapa
+        map.on('click', function (e) {
+
+            if (y.checked == true) {
+                // Borra todos los layers
+                borrar();
+
+                // Centro del círculo
+                puntoMapa = e.latlng;
+                console.log("El centro es: " + puntoMapa);
+                circulo.setLatLng(puntoMapa);
+
+                // Radio del círculo
+                circulo.setRadius(radio.value * 1000);
+
+                showData();
+
+                // Muestra las coordenadas en los input text
+                centroLng.value = puntoMapa.lng.toString();
+                centroLat.value = puntoMapa.lat.toString();
+
+                // Establece el centro del mapa como el centro del círculo
+                map.setView(puntoMapa);
+            }
+        });
+
+    } else {
+        // Desactiva el slider y los input
+        radio.setAttribute("disabled", "on");
+        slider.setAttribute("disabled", "on");
+    }
 }
 
 async function obtenerdatos(){

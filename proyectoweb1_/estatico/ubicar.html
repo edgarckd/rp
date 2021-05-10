@@ -94,17 +94,18 @@
     <main class="bajar-map">
 	<div class="parte2">
 		<form>
-			<input type="checkbox" id="parte2_historicos" name="select" value="select" onclick="selectPunto()">
-			<label for="parte2_historicos">¿Seleccionar un punto en el mapa?</label>
+			<label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
+			<input type="checkbox" id="parte2_historicos" name="select" value="select">
 		</form>
 	</div>
-	<div class="parte2">
-		<label for="centro-area-lng">Longitud:</label>
-		<input type="text" id="centro-area-lng" name="centro-area" disabled>
-		<label for="centro-area-lat">Latitud:</label>
+	<div class="form parte2">
+		<label for="centro-area-lng">Centro: (</label>
+		<input type="number" id="centro-area-lng" name="centro-area" disabled>
+		<label for="centro-area-lat">,</label>
 		<input type="text" id="centro-area-lat" name="centro-area" disabled>
-		<label for="radio-area">>> radio:</label>
-		<input type="number" id="radio-area" name="radio-area" value="1" min="1" disabled>
+		<label for="radio-area">) - Radio:</label>
+		<input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" disabled>
+		<input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10"  disabled>
 		<label for="radio-area">(km)</label>
 	</div>
         <!-- diseño del mapa-->

@@ -24,7 +24,7 @@ app.get('/ubicartaxi', (request, response) => {
 
 // conexión con la base de datos
 const {pool,Client}= require("pg")
-const connectionString="postgressql://juanc:juancamilo22@database3.cphvv1knh4lu.us-east-1.rds.amazonaws.com:5431/serverdb"
+const connectionString="postgressql://postgres:juancamilo22@database1.crqmhpdobrnz.us-east-1.rds.amazonaws.com:5432/educatedb"
 
 const client = new Client({
 	connectionString:connectionString
@@ -88,7 +88,7 @@ datos.on('message', (msg, rinfo) =>  {
 	if (taxiN == "1") {
 		console.log("taxi1: "+lat1)
 
-			client.query('INSERT INTO public.geodatos("latitud","longitud","time","puntos")VALUES ('+lat+','+lon+','+tim+',POINT('+lat1+','+lon1+'));', (err,res)=>{
+			client.query('INSERT INTO public.geodatos("latitud","longitud","time")VALUES ('+lat+','+lon+','+tim+');', (err,res)=>{
 				console.log(err,res);
 			});
 	} else if (taxiN == "2") {

@@ -27,15 +27,22 @@
     flex-wrap: wrap;
     align-items: center;
 }
-
-
-
+#radio-area{
+    width: 50px;
+}
 .contacto{
     position:absolute;
     bottom:5px;
     right:10px;
 }
-
+.slider{
+    width: 30%;
+    cursor: pointer;
+    opacity: 0.7;
+}
+.slider:hover{
+    opacity: 1;
+}
 
 .bajar{
     margin-top: 2cm;
