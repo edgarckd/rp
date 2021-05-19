@@ -5,29 +5,16 @@
         <meta charset="UTF-8" />
         <meta name="description" content="Esta página muestra la geolocalización de tu vehículo" />
         <meta name="robots" content="index,follow" />
-        <title class="container-fluid">TIO TAXIS | Localizar</title>
+        <title class="container-fluid">TIO TAXI - Live Taxi</title>
+
         <!-- Esto crea el icono en el titulo-->
-        <link rel="apple-touch-icon" sizes="57x57" href="/estatico/imagenes/">
-        <link rel="apple-touch-icon" sizes="60x60" href="/estatico/imagenes/apple-icon-60x60.png">
-        <link rel="apple-touch-icon" sizes="72x72" href="/estatico/imagenes/apple-icon-72x72.png">
-        <link rel="apple-touch-icon" sizes="76x76" href="/estatico/imagenes/apple-icon-76x76.png">
-        <link rel="apple-touch-icon" sizes="114x114" href="/estatico/imagenes/apple-icon-114x114.png">
-        <link rel="apple-touch-icon" sizes="120x120" href="/estatico/imagenes/apple-icon-120x120.png">
-        <link rel="apple-touch-icon" sizes="144x144" href="/estatico/imagenes/apple-icon-144x144.png">
-        <link rel="apple-touch-icon" sizes="152x152" href="/estatico/imagenes/apple-icon-152x152.png">
-        <link rel="apple-touch-icon" sizes="180x180" href="/estatico/imagenes/apple-icon-180x180.png">
-        <link rel="icon" type="image/png" sizes="192x192" href="/estatico/imagenes/android-icon-192x192.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="/estatico/imagenes/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="96x96" href="/estatico/imagenes/favicon-96x96.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/estatico/imagenes/favicon-16x16.png">
+        <link rel="icon" type="image/png" href="/estatico/imagenes/location-pin.png">
         <link rel="manifest" href="/estatico/imagenes/manifest.json">
-        <meta name="msapplication-TileColor" content="#ffffff">
-        <meta name="msapplication-TileImage" content="/estatico/imagenes/ms-icon-144x144.png">
-        <meta name="theme-color" content="#ffffff">
+
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <link rel="stylesheet" href="/estatico/style.css">
-
-        <!-- se importa boostrap para el diseño -->
+        
+	<!-- se importa boostrap para el diseño -->
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"  
             rel="stylesheet"
@@ -50,8 +37,6 @@
         <link href='/node_modules/leaflet-dialog/Leaflet.Dialog.css' rel='stylesheet'/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-
-
     </head>
 
     <style>
@@ -65,28 +50,30 @@
        
         <!-- Diseño encabezado logo y titulo-->
         <header class="container-fluid mt-1">
+
             <!-- diseño barra de navegacion-->
             <ul class="nav barra-ul">
-                <div class="imagen-titulo ">
-                    <img src="/estatico/imagenes/1617579128832.png" style="width:35px; height: 35px;" alt="logo">
+                <div class="imagen-titulo">
+                    <img src="/estatico/imagenes/location-pin.png" alt="logo">
                     <li class=" text-white fs-3">TIO TAXI</li>
-                </div>>
+                </div>
     
                 <div class="pestañas">
                     <li class="nav-item">
-                        <a class="nav-link fs-6 text-white " href="./index.html">Localizar</a>
+                        <a class="nav-link fs-6 text-white " href="./index.html">Live Taxi</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde estuvo?</a>
+                        <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde Estuvo?</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">Quienes somos</a>
+                        <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">¿Quienes Somos?</a>
                     </li>
                 </div>
     
             </ul>
     
         </header>
+
         <main class="bajar-map">
 
             <!-- correción de mapa-->
@@ -103,40 +90,14 @@
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
     
     </body>
+
     <footer class="boo">
-        <div class="footer bajar">
-            <div class="col-lg-3">
+        <div class="footer bajar">   
+            <div>
                 <ul>
-                    <h6 class="nav text-white">Literatura</h6>
-    
-                    <li><a href="" class="nav-link text-white fs-6">Blog</a></li>
-                    <li><a class="nav-link text-white fs-6"
-                            href="https://github.com/jcmenco/TAXIS-web-server-2">Documentación</a></li>
-                </ul>
-            </div>
-    
-            <div class="col-lg-3">
-                <ul>
-                    <h6 class="nav text-white">Digital</h6>
-    
-                    <li><a href="" class="nav-link text-white fs-6">Servicios</a></li>
-                    <li><a class="nav-link text-white fs-6"
-                            href="https://github.com/jcmenco/TAXIS-web-server-2">Contactos</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <ul>
-                    <h6 class="nav text-white">Información</h6>
-                    <li><a href="" class="nav-link text-white fs-6">Plan de Social Media</a></li>
-                    <li><a class="nav-link text-white fs-6" href="https://github.com/jcmenco/TAXIS-web-server-2">Plan de
-                            Marketing Digital</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3">
-                <h6 class="nav text-white">Redes Sociales</h6>
-                <ul>
-                    <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img alt="Siguenos en Facebook" src="https://lh3.googleusercontent.com/-NSLbC_ztNls/T6VX0g6z8AI/AAAAAAAAA0A/_vyIBrmZbuY/s48/facebook48.png" width=48 height=48  /></a>
-                    <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img alt="Siguenos en Blogger" src="https://lh3.googleusercontent.com/-D-erW-8vZFo/UIqE3H6oUuI/AAAAAAAABgE/4kh346Lwaxk/s48/instagram48.png" width=48 height=48  /></a>
+                    <a href="https://github.com/jcmenco/TAXIS-web-server-2.git" target="_blank"><img alt="Siguenos en Facebook" src="https://lh3.googleusercontent.com/-NSLbC_ztNls/T6VX0g6z8AI/AAAAAAAAA0A/_vyIBrmZbuY/s48/facebook48.png"/></a>
+                    <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img alt="Siguenos en Facebook" src="https://lh3.googleusercontent.com/-NSLbC_ztNls/T6VX0g6z8AI/AAAAAAAAA0A/_vyIBrmZbuY/s48/facebook48.png"/></a>
+                    <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img alt="Siguenos en Blogger" src="https://lh3.googleusercontent.com/-D-erW-8vZFo/UIqE3H6oUuI/AAAAAAAABgE/4kh346Lwaxk/s48/instagram48.png"/></a>
                 </ul>
             </div>
         </div>
