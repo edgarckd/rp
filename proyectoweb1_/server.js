@@ -24,7 +24,7 @@ app.get('/ubicartaxi', (request, response) => {
 
 // conexión con la base de datos
 const {pool,Client}= require("pg")
-const connectionString="postgressql://postgres:juancamilo22@database1.crqmhpdobrnz.us-east-1.rds.amazonaws.com:5432/educatedb"
+const connectionString="postgressql://juanc:juancamilo22@taxiswebdb.cphvv1knh4lu.us-east-1.rds.amazonaws.com:5432/taxisdatabase"
 
 const client = new Client({
 	connectionString:connectionString
@@ -67,13 +67,14 @@ const dgram = require('dgram');
 
 // taxis data
 const datos = dgram.createSocket('udp4');
+console.log("heyhey")
 datos.on('error', (err) => {
 	console.log(`server error:\n${err.stack}`);
 	datos.close();
 });
 datos.on('message', (msg, rinfo) =>  {
 	var msg1 = msg.toString()
-	fs.writeFile('/home/ubuntu/diseño/TAXIS-web-server-2/proyectoweb1_/estatico/result.txt', msg1, err => {
+	fs.writeFile('/home/ubuntu/diseño/proyectoweb1_/estatico/result.txt', msg1, err => {
 	if (err) throw err;
 	})
 	console.log(msg1)
