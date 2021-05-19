@@ -2,7 +2,6 @@
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8" />
     <meta name="description" content="Esta página muestra la geolocalización de tu vehículo" />
     <meta name="robots" content="index,follow" />
@@ -12,15 +11,12 @@
     <link rel="icon" type="image/png" href="/estatico/imagenes/location-pin.png">
     <link rel="manifest" href="/estatico/imagenes/manifest.json">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<link rel="stylesheet" href="/estatico/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/estatico/style.css">
 
-<!-- se importa boostrap para el diseño -->
-<link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
-    crossorigin="anonymous">
+    <!-- se importa boostrap para el diseño -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
         integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
@@ -53,50 +49,50 @@
 
 <body class="body">
 
-        <!-- Diseño encabezado logo y titulo-->
-        <header class="container-fluid mt-1">
+    <!-- Diseño encabezado logo y titulo-->
+    <header class="container-fluid mt-1">
 
-            <!-- diseño barra de navegacion-->
-            <ul class="nav barra-ul">
-                <div class="imagen-titulo">
-                    <img src="/estatico/imagenes/location-pin.png" alt="logo">
-                    <li class=" text-white fs-3">TIO TAXI</li>
-                </div>
+        <!-- diseño barra de navegacion-->
+        <ul class="nav barra-ul">
+            <div class="imagen-titulo">
+                <img src="/estatico/imagenes/location-pin.png" alt="logo">
+                <li class=" text-white fs-3">TIO TAXI</li>
+            </div>
 
-                <div class="pestañas">
-                    <li class="nav-item">
-                        <a class="nav-link fs-6 text-white " href="./index.html">Live Taxi</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde Estuvo?</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">¿Quienes Somos?</a>
-                    </li>
-                </div>
+            <div class="pestañas">
+                <li class="nav-item">
+                    <a class="nav-link fs-6 text-white " href="./index.html">Live Taxi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde Estuvo?</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">¿Quienes Somos?</a>
+                </li>
+            </div>
 
-            </ul>
+        </ul>
 
-        </header>
+    </header>
 
 
     <main class="bajar-map">
-	<div class="parte2">
-		<form>
-			<label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
-			<input type="checkbox" id="parte2_historicos" name="select" value="select">
-		</form>
-	</div>
-	<div class="form parte2">
-		<label for="centro-area-lng">Centro: (</label>
-		<input type="number" id="centro-area-lng" name="centro-area" disabled>
-		<label for="centro-area-lat">,</label>
-		<input type="text" id="centro-area-lat" name="centro-area" disabled>
-		<label for="radio-area">) - Radio:</label>
-		<input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" disabled>
-		<input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10"  disabled>
-		<label for="radio-area">(km)</label>
-	</div>
+        <div class="parte2">
+            <form>
+                <label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
+                <input type="checkbox" id="parte2_historicos" name="select" value="select">
+            </form>
+        </div>
+        <div class="form parte2">
+            <label for="centro-area-lng">Centro: (</label>
+            <input type="number" id="centro-area-lng" name="centro-area" disabled>
+            <label for="centro-area-lat">,</label>
+            <input type="text" id="centro-area-lat" name="centro-area" disabled>
+            <label for="radio-area">) - Radio:</label>
+            <input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" disabled>
+            <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
+            <label for="radio-area">(km)</label>
+        </div>
         <!-- diseño del mapa-->
         <div class="px-5 border fondo container-fluid mt-3">
             <div id="map"> </div>
@@ -120,12 +116,12 @@
 
                 <div class="w-100"></div>
                 <div class="col-12 mt-3">
-			<input type="radio" id="taxi1" name="taxis" value="taxi1" onclick="obtenerdatos()">
-			<label for="taxi1">Taxi 1: AMV569</label><br>
-			<input type="radio" id="taxi2" name="taxis" value="taxi2" onclick="obtenerdatos()">
-			<label for="taxi2">Taxi 2: YLK650</label><br>
-			<input type="radio" id="ambos" name="taxis" value="ambos" onclick="obtenerdatos()">
-			<label for="ambos">Ambos</label><br>
+                    <input type="radio" id="taxi1" name="taxis" value="taxi1" onclick="obtenerdatos()">
+                    <label for="taxi1">Taxi 1: AMV569</label><br>
+                    <input type="radio" id="taxi2" name="taxis" value="taxi2" onclick="obtenerdatos()">
+                    <label for="taxi2">Taxi 2: YLK650</label><br>
+                    <input type="radio" id="ambos" name="taxis" value="ambos" onclick="obtenerdatos()">
+                    <label for="ambos">Ambos</label><br>
                 </div>
             </div>
         </form>
@@ -139,43 +135,21 @@
 </body>
 
 <footer class="boo">
-    <div class="footer">
-        <div class="col-lg-3">
+    <div class="footer bajar">
+        <div>
             <ul>
-                <h6 class="nav text-white">Literatura</h6>
-
-                <li><a href="" class="nav-link text-white fs-6">Blog</a></li>
-                <li><a class="nav-link text-white fs-6"
-                        href="https://github.com/jcmenco/TAXIS-web-server-2">Documentación</a></li>
-            </ul>
-        </div>
-
-        <div class="col-lg-3">
-            <ul>
-                <h6 class="nav text-white">Digital</h6>
-
-                <li><a href="" class="nav-link text-white fs-6">Servicios</a></li>
-                <li><a class="nav-link text-white fs-6"
-                        href="https://github.com/jcmenco/TAXIS-web-server-2">Contactos</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <ul>
-                <h6 class="nav text-white">Información</h6>
-                <li><a href="" class="nav-link text-white fs-6">Plan de Social Media</a></li>
-                <li><a class="nav-link text-white fs-6" href="https://github.com/jcmenco/TAXIS-web-server-2">Plan de
-                        Marketing Digital</a></li>
-            </ul>
-        </div>
-        <div class="col-lg-3">
-            <h6 class="nav text-white">Redes Sociales</h6>
-            <ul>
-                <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img alt="Siguenos en Facebook" src="https://lh3.googleusercontent.com/-NSLbC_ztNls/T6VX0g6z8AI/AAAAAAAAA0A/_vyIBrmZbuY/s48/facebook48.png" width=48 height=48  /></a>
-                <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img alt="Siguenos en Blogger" src="https://lh3.googleusercontent.com/-D-erW-8vZFo/UIqE3H6oUuI/AAAAAAAABgE/4kh346Lwaxk/s48/instagram48.png" width=48 height=48  /></a>
+                <a href="https://github.com/jcmenco/TAXIS-web-server-2.git" target="_blank"><img
+                    alt="Siguenos en Facebook"
+                    src="/estatico/imagenes/github-logo.png" /></a>
+            <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img
+                    alt="Siguenos en Facebook"
+                    src="/estatico/imagenes/facebook-logo.png" /></a>
+            <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img
+                    alt="instagram"
+                    src="/estatico/imagenes/instagram-logo.png" /></a>
             </ul>
         </div>
     </div>
-
 </footer>
 
 </html>
