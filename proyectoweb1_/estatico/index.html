@@ -26,6 +26,9 @@
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
     <script src="//unpkg.com/leaflet@1.0.0-beta.2/dist/leaflet.js"></script>
     <script src="/estatico/Leaflet.EdgeMarker.js"></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
@@ -74,6 +77,11 @@
 
     <main class="bajar-map">
 
+        <!-- correción de mapa-->
+        <div class="px-5 border fondo container-fluid mt-3">
+            <div id="map"> </div>
+        </div>
+
 	<a href="#" class="a-info-live">
 	    <img src="/estatico/imagenes/faq.png" alt="?"/>
 	    <div class="div-info-live">
@@ -82,11 +90,6 @@
 		Además de eso, puedes monitorear el nivel de gasolina que tiene cada taxi.
 	    </div>
 	</a>
-
-        <!-- correción de mapa-->
-        <div class="px-5 border fondo container-fluid mt-3">
-            <div id="map"> </div>
-        </div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js"
             integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
