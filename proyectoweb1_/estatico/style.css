@@ -4,24 +4,25 @@ font-family: 'Poppins', sans-serif;
 .fondo{
    background-color:  #ffff;
 }
-.body{
+body{
     background-color: #ffff;
+    min-height: 100vh;
 }
 .barra-ul{
     background: linear-gradient( rgb(17, 17, 17) 10%, rgba(2, 11, 14, 0.685) 100%);
-    padding: 10px 0;
-    width: 98%;
+    width: 100%;
     position: fixed;
-    top: 5px;
     z-index: 1500;
-    border-radius: 15px;
     justify-content: space-between;
-    padding: 30px 50px;
+    left:0;
+    top: 0;
+    padding: 30px 0;
 }
 .imagen-titulo{
     display:flex;
     align-items: center;
     flex-wrap: wrap;
+    margin: 20px 0;
     margin-left: 50px;
 }
 .imagen-titulo img{
@@ -33,12 +34,35 @@ font-family: 'Poppins', sans-serif;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    padding: 0 50px;
+}
+.nav-link:hover{
+    transform: scale(1.2);
+}
+#active{
+    font-weight: 800;
+}
+@media only screen and (max-width: 761px){
+	body{
+	    transform: translateY(45px);
+	}
+	.nav{
+	    transform: translateY(-50px);
+	}
+}
+@media only screen and (max-width: 537px){
+	body{
+	    transform: translateY(90px);
+	}
+	.nav{
+	    transform: translateY(-95px);
+	}
 }
 #radio-area{
     width: 50px;
 }
 #centro-area-lng, #centro-area-lat{
-    width: 150px;
+    width: 200px;
 }
 .contacto{
     position:absolute;
@@ -63,24 +87,28 @@ font-family: 'Poppins', sans-serif;
     text-align: justify;
     visibility: hidden;
     font-size: 18px;
-}
-.div-info{
-    top: 130px;
-    left: 370px;
-}
-.div-info-live{
-    bottom: 12%;
-    left: 7%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
 }
 .a-info:hover .div-info, .a-info-live:hover .div-info-live{
     visibility: visible;
 }
 .parte2{
     padding: 10px 50px;
+    padding-top: 20px;
     font-size: 18px;
 }
+.form{
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 0;
+}
+.centro-section, .radio-section{
+    padding: 10px;
+}
 .slider{
-    width: 20vw;
+    width: 50vw;
     cursor: pointer;
     opacity: 0.7;
 }
@@ -103,13 +131,10 @@ font-family: 'Poppins', sans-serif;
     font-size: 18px;
 }
 .bajar-map, .bajar p{
-    padding-top: 120px;
+    padding-top: 150px;
 }
 .footer{
     background: linear-gradient( rgb(17, 17, 17) 10%, rgba(2, 11, 14, 0.685) 100%);
-    padding: 0px;
-    margin: 10px;
-    border-radius: 15px;
     display: grid;
     place-items: center;
 }

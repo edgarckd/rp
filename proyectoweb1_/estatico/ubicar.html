@@ -68,7 +68,7 @@
                     <a class="nav-link fs-6 text-white " href="./index.html">Live Taxi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-white fs-6" href="/estatico/ubicar.html">¿Donde Estuvo?</a>
+                    <a class="nav-link text-white fs-6" id="active" href="/estatico/ubicar.html">¿Donde Estuvo?</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white fs-6" href="/estatico/quienes_somos.html">¿Quienes Somos?</a>
@@ -82,6 +82,11 @@
 
     <main class="bajar-map">
 
+        <!-- diseño del mapa-->
+        <div class="px-5 border fondo container-fluid mt-3">
+            <div id="map"> </div>
+        </div>
+
         <div class="parte2">
             <form>
                 <label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
@@ -90,26 +95,27 @@
 			<img src="/estatico/imagenes/faq.png" alt="?"/>
 			<div class="div-info">
 			    Selecciona un punto en el mapa. Este será el centro de un círculo cuyo radio puedes establecer con el slider de abajo.
-			    Verás las rutas que hicieron tus taxis dentro del círculo y en el rango de tiempo de los calendarios.
+			    Verás las rutas que hicieron tus taxis dentro del círculo y en el rango de tiempo de los calendarios.<br>
+			    Si no quieres seleccionar un punto en el mapa, puedes buscar las rutas sólo por una ventana de tiempo.
 			</div>
 		</a>
             </form>
         </div>
-        <div class="form parte2">
-            <label for="centro-area-lng">Centro: (</label>
-            <input type="number" id="centro-area-lng" name="centro-area" disabled>
-            <label for="centro-area-lat">,</label>
-            <input type="text" id="centro-area-lat" name="centro-area" disabled>
-            <label for="radio-area">) - Radio:</label>
-            <input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" disabled>
-            <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
-            <label for="radio-area">(km)</label>
-	</div>
 
-        <!-- diseño del mapa-->
-        <div class="px-5 border fondo container-fluid mt-3">
-            <div id="map"> </div>
-        </div>
+        <div class="form parte2">
+	    <div class="centro-section">
+	            <label for="centro-area-lng">Centro: </label>
+	            <input type="number" id="centro-area-lng" name="centro-area" disabled>
+	            <label for="centro-area-lat">,</label>
+	            <input type="text" id="centro-area-lat" name="centro-area" disabled>
+	    </div>
+	    <div class="radio-section">            
+		<label for="radio-area">Radio:</label>
+		<input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" step="0.1" disabled>
+		<input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
+		<label for="radio-area">(km)</label>
+	    </div>
+	</div>
 
         <!-- correcion del dieño de los calendarios-->
         <form action="#" name="formulario" class="calendarios-selectores">
