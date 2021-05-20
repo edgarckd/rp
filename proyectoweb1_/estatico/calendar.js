@@ -142,11 +142,11 @@ function borrar() {
 y.onclick = function areaMapa() {
 
     // Borra todos los layers
-    borrar();
+    // borrar();
 
-	// Activa el slider y los input
-	radio.removeAttribute("disabled");
-	slider.removeAttribute("disabled");
+    // Activa el slider y los input
+    radio.removeAttribute("disabled");
+    slider.removeAttribute("disabled");
 
     // Limpia el valor del radio
     radio.value = 0;
@@ -154,9 +154,11 @@ y.onclick = function areaMapa() {
 }
 
 function showData(k) {
-	
-	map.setView([10.982088,-74.783445],12);
-	borrar();
+
+//	map.setView([10.982088,-74.783445],12);
+    if(!k){
+	   borrar();
+    }
 
     // Calendarios
     var cal1 = document.getElementById("calendario1").value;
@@ -166,11 +168,11 @@ function showData(k) {
 		// Muestra el círculo en el mapa
 		polygonGroup.addTo(map);
 		polygonGroup.addLayer(circulo);
-	
+
 		// Actualiza el radio conforme cambia el slider o el input
 		console.log("El radio es: " + radio.value)
 		circulo.setRadius(radio.value * 1000);
-		
+
 		if (x[0].checked == true) {
 			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
 		} else if (x[1].checked == true) {
@@ -196,7 +198,7 @@ function showData(k) {
 map.on('click', function (e) {
 
 	if (y.checked == true) { // el usuario quiere seleccionar un punto en el mapa
-		
+
 		// Borra todos los layers
 		borrar();
 
@@ -239,15 +241,15 @@ function rutas() { // Se ejecuta cada vez que se hace clic sobre los selecores d
 	borrar();
 
 	if (y.checked == true) { // Si el usuario quiere seleccionar un punto en el mapa
-		
 
-		
+
+
 	} else { // El usuario no quiere seleccionar un punto en el mapa
-		
+
 		// Desactiva el slider y los input
 		radio.setAttribute("disabled", "on");
 		slider.setAttribute("disabled", "on");
-		
+
 		// Muestra los datos de acuerdo con los calendarios
 		showData(false);
 	}
@@ -291,6 +293,9 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 
 		if (latlon.length != 0){
 			if (m) {
+				if(puntos[0] == undefined) {
+				    borrar();
+				}
 				longitud1 = puntos[0].lng;
 				latitud1 = puntos[0].lat;
 				time1 = tiempo[0];
@@ -332,6 +337,9 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 
 		if (latlon.length != 0){
 			if (m) {
+				if(puntos[0] == undefined) {
+				    borrar();
+				}
 				longitud1 = puntos[0].lng;
 				latitud1 = puntos[0].lat;
 				time1 = tiempo[0];

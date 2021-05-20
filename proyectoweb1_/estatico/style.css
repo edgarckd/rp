@@ -135,15 +135,15 @@ body{
     place-items: center;
 }
 .footer ul{
-    margin: 15px;
+    margin: 10px;
     padding: 0;
 }
 .footer a{
     padding: 0 20px;
 }
 .footer img{
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
 }
 .boo{
     bottom: 0px;
