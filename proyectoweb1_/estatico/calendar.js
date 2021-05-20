@@ -144,6 +144,10 @@ y.onclick = function areaMapa() {
     // Borra todos los layers
     borrar();
 
+	// Activa el slider y los input
+	radio.removeAttribute("disabled");
+	slider.removeAttribute("disabled");
+
     // Limpia el valor del radio
     radio.value = 0;
     slider.value = 0;
@@ -236,9 +240,7 @@ function rutas() { // Se ejecuta cada vez que se hace clic sobre los selecores d
 
 	if (y.checked == true) { // Si el usuario quiere seleccionar un punto en el mapa
 		
-		// Activa el slider y los input
-		radio.removeAttribute("disabled");
-		slider.removeAttribute("disabled");
+
 		
 	} else { // El usuario no quiere seleccionar un punto en el mapa
 		
