@@ -155,12 +155,12 @@ function showData() {
     circulo.setRadius(radio.value * 1000);
 
     if (x[0].checked == true) {
-        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
+        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
     } else if (x[1].checked == true) {
-        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 1, puntoMapa, radio.value, true);
+        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 1, puntoMapa, radio.value, true);
     } else {
-        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 0, puntoMapa, radio.value, true);
-        mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 0, puntoMapa, radio.value, true);
+        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 0, puntoMapa, radio.value, true);
+        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 0, puntoMapa, radio.value, true);
     }
 }
 
@@ -238,12 +238,12 @@ async function obtenerdatos(){
 		map.setView([10.982088,-74.783445],12);
 
 		if (x[0].checked == true) {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,1);
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`,1,1);
 		} else if (x[1].checked == true) {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,1);
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`,2,1);
 		} else {
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
-			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
 		}
 	}
 }
