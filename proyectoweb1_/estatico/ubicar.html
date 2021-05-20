@@ -82,21 +82,6 @@
 
     <main class="bajar-map">
 
-        <div class="form parte2">
-            <div class="centro-section">
-                <label for="centro-area-lng">Centro: </label>
-                <input type="number" id="centro-area-lng" name="centro-area" disabled>
-                <label for="centro-area-lat">,</label>
-                <input type="text" id="centro-area-lat" name="centro-area" disabled>
-            </div>
-            <div class="radio-section">
-                <label for="radio-area">Radio:</label>
-                <input type="range" min="0" max="10" value="1" class="slider" id="radio_slider" step="1" disabled>
-                <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
-                <label for="radio-area">(km)</label>
-            </div>
-        </div>
-
         <div class="parte2">
             <form>
                 <label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
@@ -113,6 +98,21 @@
                     </div>
                 </a>
             </form>
+        </div>
+
+        <div class="form parte2">
+            <div class="centro-section">
+                <label for="centro-area-lng">Centro: </label>
+                <input type="number" id="centro-area-lng" name="centro-area" disabled>
+                <label for="centro-area-lat">,</label>
+                <input type="text" id="centro-area-lat" name="centro-area" disabled>
+            </div>
+            <div class="radio-section">
+                <label for="radio-area">Radio:</label>
+                <input type="range" min="0" max="10" value="1" class="slider" id="radio_slider" step="1" disabled>
+                <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
+                <label for="radio-area">(km)</label>
+            </div>
         </div>
 
         <!-- diseño del mapa-->
