@@ -47,7 +47,7 @@
 <style>
     #map {
         width: cover;
-        height: 70vh;
+        height: 60vh;
     }
 </style>
 
@@ -93,8 +93,8 @@
                         con el slider de abajo.
                         Verás las rutas que hicieron tus taxis dentro del círculo y en el rango de tiempo de los
                         calendarios.<br>
-                        Si no quieres seleccionar un punto en el mapa, puedes buscar las rutas sólo por una ventana de
-                        tiempo.
+			Para ver las rutas debes seleccionar alguno de tus taxis (o ambos) y mover el slider o cambiar 
+			el valor del radio.
                     </div>
                 </a>
             </form>
@@ -109,7 +109,7 @@
             </div>
             <div class="radio-section">
                 <label for="radio-area">Radio:</label>
-                <input type="range" min="0" max="10" value="1" class="slider" id="radio_slider" step="1" disabled>
+                <input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" step="1" disabled>
                 <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
                 <label for="radio-area">(km)</label>
             </div>

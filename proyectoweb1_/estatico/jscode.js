@@ -33,8 +33,8 @@ var edgeMarkerLayer = L.edgeMarker({
 	layerGroup: null
 }).addTo(map);
 
-var popup1 = "Taxi No:1 <br> Placa: AVM569 <br>";
-var popup2 = "Taxi No:2 <br> Placa: YLK650 <br>";
+var popup1 = "Taxi 1: AMV569<br>";
+var popup2 = "Taxi 2: YLK650<br>";
 var marker1 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup1, { autoClose: false }).addTo(map);
 var marker2 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup2, { autoClose: false }).addTo(map);
 var taxi1 = [];
@@ -56,13 +56,14 @@ function readFile() {
 			data2 = split[1];
 			data3 = split[2];
 			data4 = split[3];
+			console.log(data)
 			if (data1 != null && data2 != null && data3 != null) {
 				if (data4 == "1") {
 					var latlng1 = L.latLng(data1, data2);
 					data5 = split[4];
 					taxi1.push(latlng1);
 					polyline.setLatLngs([taxi1])
-					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 + "<br> Nivel gasolina: " + data4 + "%");
+					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 + "<br> Nivel gasolina: " + data5 + "%");
 				} else if (data4 == "2") {
 					var latlng2 = L.latLng(data1, data2);
 					taxi2.push(latlng2);

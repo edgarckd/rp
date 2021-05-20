@@ -89,7 +89,8 @@ datos.on('message', (msg, rinfo) => {
 			console.log(err, res);
 		});
 	} else if (taxiN == "2") {
-		client.query('INSERT INTO public.geodatos2("latitud","longitud","time","nivel")VALUES (' + lat + ',' + lon + ',' + tim + ');', (err, res) => {
+		console.log("taxi 2")
+		client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES (' + lat + ',' + lon + ',' + tim + ');', (err, res) => {
 			console.log(err, res);
 		});
 	}

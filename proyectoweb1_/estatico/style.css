@@ -44,7 +44,7 @@ body{
 }
 @media only screen and (max-width: 761px){
 	body{
-	    transform: translateY(45px);
+	    transform: translateY(40px);
 	}
 	.nav{
 	    transform: translateY(-50px);
@@ -52,7 +52,7 @@ body{
 }
 @media only screen and (max-width: 537px){
 	body{
-	    transform: translateY(90px);
+	    transform: translateY(85px);
 	}
 	.nav{
 	    transform: translateY(-95px);
@@ -95,17 +95,13 @@ body{
     visibility: visible;
 }
 .parte2{
-    padding: 10px 50px;
-    padding-top: 20px;
-    font-size: 18px;
-}
-.form{
+    padding: 0 50px;
+    font-size: 16px;
     display: flex;
     flex-wrap: wrap;
-    padding-top: 0;
 }
 .centro-section, .radio-section{
-    padding: 10px;
+    padding: 5px;
 }
 .slider{
     width: 50vw;
@@ -121,17 +117,17 @@ body{
 .d-flex.flex-wrap input{
     margin-left: 20px;
     margin-right: 10px;
-    font-size: 18px;
+    font-size: 16px;
 }
 .selectores{
     display: grid;
     grid-template-columns: 33% 33% 33%;
     place-items: center;
     padding: 20px 0;
-    font-size: 18px;
+    font-size: 16px;
 }
 .bajar-map, .bajar p{
-    padding-top: 150px;
+    padding-top: 100px;
 }
 .footer{
     background: linear-gradient( rgb(17, 17, 17) 10%, rgba(2, 11, 14, 0.685) 100%);
