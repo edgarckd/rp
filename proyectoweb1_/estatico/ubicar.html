@@ -82,6 +82,21 @@
 
     <main class="bajar-map">
 
+        <div class="form parte2">
+            <div class="centro-section">
+                <label for="centro-area-lng">Centro: </label>
+                <input type="number" id="centro-area-lng" name="centro-area" disabled>
+                <label for="centro-area-lat">,</label>
+                <input type="text" id="centro-area-lat" name="centro-area" disabled>
+            </div>
+            <div class="radio-section">
+                <label for="radio-area">Radio:</label>
+                <input type="range" min="0" max="10" value="1" class="slider" id="radio_slider" step="1" disabled>
+                <input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
+                <label for="radio-area">(km)</label>
+            </div>
+        </div>
+
         <!-- diseño del mapa-->
         <div class="px-5 border fondo container-fluid mt-3">
             <div id="map"> </div>
@@ -91,31 +106,19 @@
             <form>
                 <label for="parte2_historicos">¿Desea buscar las rutas por área?</label>
                 <input type="checkbox" id="parte2_historicos" name="select" value="select">
-		<a href="#" class="a-info">
-			<img src="/estatico/imagenes/faq.png" alt="?"/>
-			<div class="div-info">
-			    Selecciona un punto en el mapa. Este será el centro de un círculo cuyo radio puedes establecer con el slider de abajo.
-			    Verás las rutas que hicieron tus taxis dentro del círculo y en el rango de tiempo de los calendarios.<br>
-			    Si no quieres seleccionar un punto en el mapa, puedes buscar las rutas sólo por una ventana de tiempo.
-			</div>
-		</a>
+                <a href="#" class="a-info">
+                    <img src="/estatico/imagenes/faq.png" alt="?" />
+                    <div class="div-info">
+                        Selecciona un punto en el mapa. Este será el centro de un círculo cuyo radio puedes establecer
+                        con el slider de abajo.
+                        Verás las rutas que hicieron tus taxis dentro del círculo y en el rango de tiempo de los
+                        calendarios.<br>
+                        Si no quieres seleccionar un punto en el mapa, puedes buscar las rutas sólo por una ventana de
+                        tiempo.
+                    </div>
+                </a>
             </form>
         </div>
-
-        <div class="form parte2">
-	    <div class="centro-section">
-	            <label for="centro-area-lng">Centro: </label>
-	            <input type="number" id="centro-area-lng" name="centro-area" disabled>
-	            <label for="centro-area-lat">,</label>
-	            <input type="text" id="centro-area-lat" name="centro-area" disabled>
-	    </div>
-	    <div class="radio-section">            
-		<label for="radio-area">Radio:</label>
-		<input type="range" min="0" max="10" value="0" class="slider" id="radio_slider" step="0.1" disabled>
-		<input type="number" id="radio-area" name="radio-area" value="1" min="1" max="10" disabled>
-		<label for="radio-area">(km)</label>
-	    </div>
-	</div>
 
         <!-- correcion del dieño de los calendarios-->
         <form action="#" name="formulario" class="calendarios-selectores">
@@ -134,18 +137,18 @@
                 </div>
 
                 <div class="selectores">
-		    <div>
-	                    <input type="radio" id="taxi1" name="taxis" value="taxi1" onclick="obtenerdatos()">
-	                    <label for="taxi1">Taxi 1: AMV569</label><br>
-		    </div>
-		    <div>
-	                    <input type="radio" id="taxi2" name="taxis" value="taxi2" onclick="obtenerdatos()">
-	                    <label for="taxi2">Taxi 2: YLK650</label><br>
-		    </div>
-		    <div>
-	                    <input type="radio" id="ambos" name="taxis" value="ambos" onclick="obtenerdatos()">
-	                    <label for="ambos">Ambos</label><br>
-		    </div>
+                    <div>
+                        <input type="radio" id="taxi1" name="taxis" value="taxi1" onclick="rutas()">
+                        <label for="taxi1">Taxi 1: AMV569</label><br>
+                    </div>
+                    <div>
+                        <input type="radio" id="taxi2" name="taxis" value="taxi2" onclick="rutas()">
+                        <label for="taxi2">Taxi 2: YLK650</label><br>
+                    </div>
+                    <div>
+                        <input type="radio" id="ambos" name="taxis" value="ambos" onclick="rutas()">
+                        <label for="ambos">Ambos</label><br>
+                    </div>
                 </div>
             </div>
         </form>
@@ -163,14 +166,11 @@
         <div>
             <ul>
                 <a href="https://github.com/jcmenco/TAXIS-web-server-2.git" target="_blank"><img
-                    alt="Siguenos en Facebook"
-                    src="/estatico/imagenes/github-logo.png" /></a>
-            <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img
-                    alt="Siguenos en Facebook"
-                    src="/estatico/imagenes/facebook-logo.png" /></a>
-            <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img
-                    alt="instagram"
-                    src="/estatico/imagenes/instagram-logo.png" /></a>
+                        alt="Siguenos en Facebook" src="/estatico/imagenes/github-logo.png" /></a>
+                <a href="https://www.facebook.com/profile.php?id=100067005104920" target="_blank"><img
+                        alt="Siguenos en Facebook" src="/estatico/imagenes/facebook-logo.png" /></a>
+                <a href="https://instagram.com/tiotaxiapp?igshid=o0j5trxrleyt" target="_blank"><img alt="instagram"
+                        src="/estatico/imagenes/instagram-logo.png" /></a>
             </ul>
         </div>
     </div>
