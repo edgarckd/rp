@@ -114,9 +114,8 @@ function verificar(){
 
 // Históricos parte 1 + parte 2
 
+// Selector de taxis, muestra ambos taxis por defecto
 var x = document.getElementsByName("taxis");
-
-// Muestra ambos taxis por defecto
 x[2].checked = true;
 
 // Checkbox
@@ -140,30 +139,6 @@ function borrar() {
     polygonGroup.removeLayer(circulo);
 }
 
-function showData() {
-
-    // Calendarios
-    var cal1 = document.getElementById("calendario1").value;
-    var cal2 = document.getElementById("calendario2").value;
-
-    // Muestra el círculo en el mapa
-    polygonGroup.addTo(map);
-    polygonGroup.addLayer(circulo);
-
-    // Actualiza el radio conforme cambia el slider o el input
-    console.log("El radio es: " + radio.value)
-    circulo.setRadius(radio.value * 1000);
-
-    if (x[0].checked == true) {
-        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
-    } else if (x[1].checked == true) {
-        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 1, puntoMapa, radio.value, true);
-    } else {
-        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 0, puntoMapa, radio.value, true);
-        mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 0, puntoMapa, radio.value, true);
-    }
-}
-
 y.onclick = function areaMapa() {
 
     // Borra todos los layers
@@ -172,71 +147,35 @@ y.onclick = function areaMapa() {
     // Limpia el valor del radio
     radio.value = 0;
     slider.value = 0;
-
-    if (y.checked == true) {
-
-        // Activa el slider y los input
-        radio.removeAttribute("disabled");
-        slider.removeAttribute("disabled");
-
-        // Vincula el slider con el input number del radio y viceversa
-        slider.oninput = function () {
-            radio.value = slider.value;
-
-	    borrar();
-           // Mostrar el círculo y los datos
-            showData();
-        }
-        radio.oninput = function () {
-            slider.value = radio.value;
-
-	    borrar()
-            // Mostrar el círculo y los datos
-            showData();
-        }
-
-        // Se ejecuta al hacer click en el mapa
-        map.on('click', function (e) {
-
-            if (y.checked == true) {
-                // Borra todos los layers
-                borrar();
-
-                // Centro del círculo
-                puntoMapa = e.latlng;
-                console.log("El centro es: " + puntoMapa);
-                circulo.setLatLng(puntoMapa);
-
-                // Radio del círculo
-                circulo.setRadius(radio.value * 1000);
-
-                showData();
-
-                // Muestra las coordenadas en los input text
-                centroLng.value = puntoMapa.lng.toString();
-                centroLat.value = puntoMapa.lat.toString();
-
-                // Establece el centro del mapa como el centro del círculo
-                map.setView(puntoMapa);
-            }
-        });
-
-    } else {
-        // Desactiva el slider y los input
-        radio.setAttribute("disabled", "on");
-        slider.setAttribute("disabled", "on");
-    }
 }
 
-async function obtenerdatos(){
-
-	var cal1 = document.getElementById("calendario1").value;
-	var cal2 = document.getElementById("calendario2").value;
+function showData(k) {
+	
+	map.setView([10.982088,-74.783445],12);
 	borrar();
 
-	if (y.checked == false) {
-		map.setView([10.982088,-74.783445],12);
+    // Calendarios
+    var cal1 = document.getElementById("calendario1").value;
+    var cal2 = document.getElementById("calendario2").value;
 
+	if (k) {
+		// Muestra el círculo en el mapa
+		polygonGroup.addTo(map);
+		polygonGroup.addLayer(circulo);
+	
+		// Actualiza el radio conforme cambia el slider o el input
+		console.log("El radio es: " + radio.value)
+		circulo.setRadius(radio.value * 1000);
+		
+		if (x[0].checked == true) {
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 1, puntoMapa, radio.value, true);
+		} else if (x[1].checked == true) {
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 1, puntoMapa, radio.value, true);
+		} else {
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`, 1, 0, puntoMapa, radio.value, true);
+			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`, 2, 0, puntoMapa, radio.value, true);
+		}
+	} else {
 		if (x[0].checked == true) {
 			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`,1,1);
 		} else if (x[1].checked == true) {
@@ -245,6 +184,70 @@ async function obtenerdatos(){
 			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/1;${cal1};${cal2}`,1,0);
 			mostrarRecorrido(`http://tiotaxisweb.zapto.org:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
 		}
+	}
+
+}
+
+// Se ejecuta al hacer click en el mapa
+map.on('click', function (e) {
+
+	if (y.checked == true) { // el usuario quiere seleccionar un punto en el mapa
+		
+		// Borra todos los layers
+		borrar();
+
+		// Centro del círculo
+		puntoMapa = e.latlng;
+		console.log("El centro es: " + puntoMapa);
+		circulo.setLatLng(puntoMapa);
+
+		// Radio del círculo
+		circulo.setRadius(radio.value * 1000);
+
+		showData(true);
+
+		// Muestra las coordenadas en los input text
+		centroLng.value = puntoMapa.lng.toString();
+		centroLat.value = puntoMapa.lat.toString();
+
+		// Establece el centro del mapa como el centro del círculo
+		map.setView(puntoMapa);
+	}
+});
+
+// Vincula el slider con el input number del radio y viceversa
+slider.oninput = function () {
+	radio.value = slider.value;
+
+	// Actualiza los layers
+	showData(true);
+}
+radio.oninput = function () {
+	slider.value = radio.value;
+
+	// Actualiza los layers
+	showData(true);
+}
+
+function rutas() { // Se ejecuta cada vez que se hace clic sobre los selecores de los taxis
+
+	// Borra todos los layers
+	borrar();
+
+	if (y.checked == true) { // Si el usuario quiere seleccionar un punto en el mapa
+		
+		// Activa el slider y los input
+		radio.removeAttribute("disabled");
+		slider.removeAttribute("disabled");
+		
+	} else { // El usuario no quiere seleccionar un punto en el mapa
+		
+		// Desactiva el slider y los input
+		radio.setAttribute("disabled", "on");
+		slider.setAttribute("disabled", "on");
+		
+		// Muestra los datos de acuerdo con los calendarios
+		showData(false);
 	}
 }
 

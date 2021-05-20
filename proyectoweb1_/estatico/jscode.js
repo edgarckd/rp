@@ -39,8 +39,8 @@ var marker1 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup1, { autoClose: 
 var marker2 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup2, { autoClose: false }).addTo(map);
 var taxi1 = [];
 var taxi2 = [];
-var polyline = L.polyline([], { color: 'red', opacity: 0.6, weight: 4, lineJoin: 'round', smoothFactor: 0 }).addTo(map);
-var polyline2 = L.polyline([], { color: 'blue', opacity: 0.6, weight: 4, lineJoin: 'round', smoothFactor: 0 }).addTo(map);
+var polyline = L.polyline([], { color: 'red', opacity: 0.8, weight: 4, lineJoin: 'round', smoothFactor: 0 }).addTo(map);
+var polyline2 = L.polyline([], { color: 'blue', opacity: 0.8, weight: 4, lineJoin: 'round', smoothFactor: 0 }).addTo(map);
 
 /*
 * Función que lee los archivos "result.txt" y "result2.txt" cada 1.5 segundos
@@ -62,7 +62,7 @@ function readFile() {
 					data5 = split[4];
 					taxi1.push(latlng1);
 					polyline.setLatLngs([taxi1])
-					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 + "<br> Nivel gasolina: " + data3 + "%");
+					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 + "<br> Nivel gasolina: " + data4 + "%");
 				} else if (data4 == "2") {
 					var latlng2 = L.latLng(data1, data2);
 					taxi2.push(latlng2);
