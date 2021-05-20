@@ -82,7 +82,7 @@ function formatofecha(date){
 // Fecha y hora local:
 var date = new Date();
 var local = formatofecha(date)
-console.log(local)
+
 // Establece que el máximo valor por defecto de los calendarios es el día que sea realiza la consulta
 document.getElementById("calendario1").setAttribute("max", local)
 document.getElementById("calendario2").setAttribute("max", local)
@@ -112,18 +112,8 @@ function verificar(){
 	}
 }
 
-markersGroup.removeLayer(marker11);
-markersGroup.removeLayer(marker21);
-markersGroup.removeLayer(marker12);
-markersGroup.removeLayer(marker22);
-polygonGroup.removeLayer(circulo);
+// Históricos parte 1 + parte 2
 
-/*
-* Esta función recupera los datos de la base de datos de acuerdo a lo seleccionado en el formulario
-* Carga la matriz de la polilínea y la añade al mapa. Se ejecuta al hacer clic al botón "Buscar"
-* También muestra una alerta si no hay datos para la ventana de tiempo seleccionada.
-* Se incluyen los metodos para borrar marcadores y polilíneas
-*/
 var x = document.getElementsByName("taxis");
 
 // Muestra ambos taxis por defecto
@@ -240,17 +230,10 @@ y.onclick = function areaMapa() {
 
 async function obtenerdatos(){
 
-	polyline.setLatLngs([]);
-	polyline2.setLatLngs([]);
 	var cal1 = document.getElementById("calendario1").value;
 	var cal2 = document.getElementById("calendario2").value;
+	borrar();
 
-	dialog.destroy();
-	markersGroup.removeLayer(marker11);
-	markersGroup.removeLayer(marker21);
-	markersGroup.removeLayer(marker12);
-	markersGroup.removeLayer(marker22);
-	polygonGroup.removeLayer(circulo);
 	if (y.checked == false) {
 		map.setView([10.982088,-74.783445],12);
 
@@ -263,9 +246,6 @@ async function obtenerdatos(){
 			mostrarRecorrido(`http://taxisweb.sytes.net:37778/ubicartaxi/2;${cal1};${cal2}`,2,0);
 		}
 	}
-
-	console.log(y.checked);
-
 }
 
 async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
@@ -299,8 +279,6 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 			}
 		}
 	}
-
-	console.log("distancia calculada "+d)
 
 	if (taxiNo==1) {
 		var poly = polyline;
