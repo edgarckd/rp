@@ -128,7 +128,7 @@ var slider = document.getElementById("radio_slider");
 var centroLng = document.getElementById("centro-area-lng");
 var centroLat = document.getElementById("centro-area-lat");
 
-function borrar() {
+function borrar(k) {
     polyline.setLatLngs([]);
     polyline2.setLatLngs([]);
     dialog.destroy();
@@ -136,7 +136,9 @@ function borrar() {
     markersGroup.removeLayer(marker21);
     markersGroup.removeLayer(marker12);
     markersGroup.removeLayer(marker22);
-    polygonGroup.removeLayer(circulo);
+    if (k){
+	polygonGroup.removeLayer(circulo);
+    }
 }
 
 y.onclick = function areaMapa() {
@@ -157,7 +159,7 @@ function showData(k) {
 
 //	map.setView([10.982088,-74.783445],12);
     if(!k){
-	   borrar();
+	   borrar(true);
     }
 
     // Calendarios
@@ -200,7 +202,7 @@ map.on('click', function (e) {
 	if (y.checked == true) { // el usuario quiere seleccionar un punto en el mapa
 
 		// Borra todos los layers
-		borrar();
+		borrar(true);
 
 		// Centro del círculo
 		puntoMapa = e.latlng;
@@ -235,10 +237,25 @@ radio.oninput = function () {
 	showData(true);
 }
 
+y.onchange = function(){
+	if(y.checked == false){
+		borrar(true);
+	 	// Desactiva el slider y los input
+	        radio.setAttribute("disabled", "on");
+	        slider.setAttribute("disabled", "on");
+	}else{
+		borrar(true);
+	 	// Desactiva el slider y los input
+	        radio.removeAtribute("disabled");
+	        slider.removeAttribute("disabled");
+	}
+}
+
+
 function rutas() { // Se ejecuta cada vez que se hace clic sobre los selecores de los taxis
 
 	// Borra todos los layers
-	borrar();
+	borrar(true);
 
 	if (y.checked == true) { // Si el usuario quiere seleccionar un punto en el mapa
 
@@ -263,6 +280,7 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 	var latlon = Array(rows.length);
 	var puntos = [];
 	var tiempo = [];
+   	var gasolina = [];
 	var d;
 	var inicio;
 	var final;
@@ -283,6 +301,7 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 			if (d <= radio) {
 				puntos.push(latlon[i]);
 				tiempo.push(rows[i].time);
+				gasolina.push(rows[i].nivel);
 			}
 		}
 	}
@@ -294,11 +313,13 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 		if (latlon.length != 0){
 			if (m) {
 				if(puntos[0] == undefined) {
-				    borrar();
+				    borrar(false);
 				}
 				longitud1 = puntos[0].lng;
 				latitud1 = puntos[0].lat;
 				time1 = tiempo[0];
+				nivel1 = gasolina[0];
+				nivel2 = gasolina[gasolina.length-1];
 				longitud2 = puntos[puntos.length-1].lng;
 				latitud2 = puntos[puntos.length-1].lat;
 				time2 = tiempo[tiempo.length-1];
@@ -319,10 +340,17 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 			markersGroup.addTo(map);
 			markersGroup.addLayer(marker11);
 			markersGroup.addLayer(marker21);
+			if (y.checked == true){
+				nivelLabel1 = "<br>Nivel gasolina inicial: "+nivel1
+				nivelLabel2 = "<br>Nivel gasolina final: "+nivel2
+			} else {
+				nivelLabel1 = "";
+				nivelLabel2 = "";
+			}
 			marker11.setLatLng(inicio);
-			marker11.setPopupContent(popupTaxi+popupInicial+"Longitud: "+longitud1+"<br>Latitud: "+latitud1+"<br>Tiempo: "+time1);
+			marker11.setPopupContent(popupTaxi+popupInicial+"Longitud: "+longitud1+"<br>Latitud: "+latitud1+"<br>Tiempo: "+time1+nivelLabel1);
 			marker21.setLatLng(final);
-			marker21.setPopupContent(popupTaxi+popupFinal+"Longitud: "+longitud2+"<br>Latitud: "+latitud2+"<br>Tiempo: "+time2);
+			marker21.setPopupContent(popupTaxi+popupFinal+"Longitud: "+longitud2+"<br>Latitud: "+latitud2+"<br>Tiempo: "+time2+nivelLabel2);
 		} else {
 			markersGroup.removeLayer(marker11);
 			markersGroup.removeLayer(marker21);
@@ -338,7 +366,7 @@ async function mostrarRecorrido(fetchParam,taxiNo,k,centro,radio,m){
 		if (latlon.length != 0){
 			if (m) {
 				if(puntos[0] == undefined) {
-				    borrar();
+				    borrar(false);
 				}
 				longitud1 = puntos[0].lng;
 				latitud1 = puntos[0].lat;
