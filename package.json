@@ -1,0 +1,11 @@
+{
+  "name": "repomenco",
+  "version": "1.0.0",
+  "description": "Archivos y complementos asociados a la implementación del proyecto de diseño electrónico",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
