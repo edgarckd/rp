@@ -16,7 +16,8 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 * 6. Inicialización de las polilíneas
 */
 var myIcon = L.icon({
-	iconUrl: 'https://image.flaticon.com/icons/png/128/2282/2282323.png',
+
+	iconUrl: 'https://cdn-icons-png.flaticon.com/512/2277/2277830.png',
 	iconSize: [30, 30],
 	iconAnchor: [15, 15],
 	popupAnchor: [0, -15],
@@ -33,7 +34,7 @@ var edgeMarkerLayer = L.edgeMarker({
 	layerGroup: null
 }).addTo(map);
 
-var popup1 = "Taxi 1: AMV569<br>";
+var popup1 = "Electric WheelChair <br>";
 //var popup2 = "Taxi 2: YLK650<br>";
 var marker1 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup1, { autoClose: false }).addTo(map);
 //var marker2 = L.marker([0, 0], { icon: myIcon }).bindPopup(popup2, { autoClose: false }).addTo(map);
@@ -63,7 +64,7 @@ function readFile() {
 					data5 = split[4];
 					taxi1.push(latlng1);
 					polyline.setLatLngs([taxi1])
-					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 + "<br> Nivel gasolina: " + data5 + "%");
+					marker1.setLatLng(latlng1).setPopupContent(popup1 + "Longitud: " + data1 + "<br> Latitud: " + data2 + "<br> Tiempo: " + data3 /*+ "<br> Nivel gasolina: " + data5 + "%"*/);
 				}/* else if (data4 == "2") {
 					var latlng2 = L.latLng(data1, data2);
 					taxi2.push(latlng2);
