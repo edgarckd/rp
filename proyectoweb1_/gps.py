@@ -3,8 +3,8 @@ import time, serial, threading
 from socket import socket, AF_INET, SOCK_DGRAM
 
 def conectar():
-    #try:
-    serialArduino.write(b'a')
+    #try: 
+    '''serialArduino.write(b'a')
     for i in range(3):
         #cad =serialArduino.readline().decode('ascii') 
         cad = serialArduino.readline().decode().strip()
@@ -13,7 +13,7 @@ def conectar():
             ll = cad
     ll = ll.split(' ')
     lat = str(ll[0])
-    log = str(ll[1])
+    log = str(ll[1]) '''
     #lat = float(lat)
     #log = float(log)
     '''txt = open('./estatico/result.txt', 'w')
@@ -34,7 +34,7 @@ def conectar():
 
 socket = socket(AF_INET,SOCK_DGRAM)
 #socket.connect(('localhost',37777))
-serialArduino = serial.Serial("/dev/ttyACM0",115200,timeout=1.0)
+#serialArduino = serial.Serial("/dev/ttyACM0",115200,timeout=1.0)
 #timeout (1 segundo) o tiempo máximo de espera para una lectura.
 time.sleep(1) # espera 1 seg, para dar tiempoa conectarse
 print("conexion realizada con exito")

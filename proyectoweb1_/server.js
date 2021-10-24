@@ -83,7 +83,7 @@ datos.on('message', (msg, rinfo) => {
 	tim = ("\'" + data[2] + "\'");
 	taxiN = data[3];
 
-	if (taxiN == "1") {
+	/*if (taxiN == "1") {
 		nivel = data[4];
 		client.query('INSERT INTO public.geodatos("latitud","longitud","time","nivel")VALUES (' + lat + ',' + lon + ',' + tim + ',' + nivel +');', (err, res) => {
 			console.log(err, res);
@@ -93,6 +93,6 @@ datos.on('message', (msg, rinfo) => {
 		client.query('INSERT INTO public.geodatos2("latitud","longitud","time")VALUES (' + lat + ',' + lon + ',' + tim + ');', (err, res) => {
 			console.log(err, res);
 		});
-	}
+	}*/
 });
 datos.bind(37777);
