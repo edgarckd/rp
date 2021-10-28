@@ -18,10 +18,12 @@ app.get('/', (request, response) => {
 	response.sendFile(path.join(__dirname + '/estatico/index.html'));
 });
 
-app.get('/ubicartaxi', (request, response) => {
-	response.sendFile(path.join(__dirname + '/estatico/ubicar.html'));
-});
+ 
 /*
+app.get('/ubicartaxi', (request, response) => {
+	response.sendFile(path.join(__dirname + './estatico/ubicar.html'));
+});
+
 // conexión con la base de datos
 const { pool, Client } = require("pg")
 const connectionString = "postgressql://juanc:juancamilo22@taxiswebdb.cphvv1knh4lu.us-east-1.rds.amazonaws.com:5432/taxisdatabase"
@@ -72,6 +74,7 @@ datos.on('error', (err) => {
 	datos.close();
 });
 datos.on('message', (msg, rinfo) => {
+	console.log(msg);
 	var msg1 = msg.toString();
 	fs.writeFile('/home/edgarckd/Documentos/repoMenco/proyectoweb1_/estatico/result.txt', msg1, err => {
 		if (err) throw err;
