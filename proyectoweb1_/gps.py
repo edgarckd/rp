@@ -1,5 +1,5 @@
 
-import time, serial, threading
+import time, serial, threading, datetime
 from socket import socket, AF_INET, SOCK_DGRAM
 
 def conectar():
@@ -19,15 +19,12 @@ def conectar():
     '''txt = open('./estatico/result.txt', 'w')
     txt.write(f'{lat}/{log}/nn/1/8')#.format(lat,log)
     txt.close()'''
-    #lat = bytes(lat)
-    #log = bytes(log)
-    #mensaje = lat + b'/' + log + b'/nn/1/8'
-    #'{0}/{1}/nn/1/8'.format(lat,log).encode()
-    socket.sendto(b'10.99228/-74.80975/2021-05-31 21:37/1/8',('localhost', 37777))#.format(lat,log))
-    threading.Timer(1, conectar).start()
-    '''except:
+    try:
+        socket.sendto(f'{lat}/{log}/{datetime.datetime.now()}'.encode('utf-8'),('localhost', 37777))
+        threading.Timer(1, conectar).start()
+    except:
         print("hubo un error, no fué posible conectar con el controlador")
-    '''
+    
 
 
         
